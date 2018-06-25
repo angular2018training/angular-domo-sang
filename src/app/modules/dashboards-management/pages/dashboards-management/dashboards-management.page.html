@@ -1,0 +1,158 @@
+<div class="full-h" fxLayout="column">
+    <div class="page-content m-t-5" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span>
+                <strong>{{'tags.dashboardsManagement' | translate}}</strong>
+            </span>
+            <span fxFlex></span>
+            <button mat-button class="common-btn" (click)="createDashboard()">{{'tags.dashboardsManagement.createNewDashboard' | translate}}</button>
+        </div>
+        <div class="m-t-10 dash-content" fxLayout="column">
+            <mat-tab-group>
+                <mat-tab *ngFor="let dash of dashboards" label="{{dash.label}}">
+                    <div class="tab-content" fxLayout="column">
+                        <div class="tab-content-action">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <!-- <span class="page-title">{{'tags.clientManagement.clientList' | translate}}</span> -->
+                                <div fxFlex></div>
+                                <button mat-button class="common-btn " (click)="addChart($event)">{{'tags.dashboardsManagement.addChart' | translate}}</button>
+                                <button mat-button class="common-btn m-l-5 " (click)="editLayout($event)">{{'tags.dashboardsManagement.editLayout' | translate}}</button>
+                                <div class="dropdown m-r-60">
+                                    <button fxLayout="row" fxLayoutAlign="center center" class="common-btn m-l-5 " type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <span>{{'tags.dashboardsManagement.menu' | translate}}</span>
+                                        <mat-icon class="m-l-10">arrow_drop_down</mat-icon>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button mat-button (click)="editDashboard()">{{'tags.dashboardsManagement.editDashboard' | translate}}</button>
+                                        <button mat-button (click)="deleteBuilding($event)">{{'tags.dashboardsManagement.deleteDashboard' | translate}}</button>
+                                        <button mat-button>{{'tags.dashboardsManagement.refreshDashboard' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content-body">
+                            <div class="m-t-5" fxFlex fxLayout="column" fxLayoutAlign="center">
+                                <mat-grid-list class="layout-container" cols="2" rowHeight="380px">
+                                    <mat-grid-tile colspan="1" rowspan="1">
+                                        <div class="layout-item cursor-pointer" fxLayoutAlign="center">
+                                            <div class="layout">
+
+                                                <div fxLayout="column" class="full-h">
+                                                    <div class="header" fxLayout="row" fxLayoutAlign="start center">
+                                                        <span class="p-5 fs-14" style="text-transform: inherit;">
+                                                            <strong>The trend of Absolute Peak Utilization by time</strong>
+                                                        </span>
+                                                        <div fxFlex></div>
+                                                        <button mat-icon-button class="m-r-5">
+                                                            <mat-icon class="color-1 fs-18" aria-label="Close">open_with</mat-icon>
+                                                        </button>
+                                                        <div class="dropdown">
+                                                            <button mat-icon-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <mat-icon class="color-1 fs-18 arrow-drop" aria-label="Close">arrow_drop_down</mat-icon>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <div class="p-x-10" fxLayout="column">
+                                                                    <a>{{'tags.dashboardsManagement.edit' | translate}}</a>
+                                                                    <a>{{'tags.dashboardsManagement.delete' | translate}}</a>
+                                                                    <a>{{'tags.dashboardsManagement.refresh' | translate}}</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dialog-body p-20 full-h" fxLayout="column">
+                                                        <img src="assets/dash-board/chart-3.png" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile colspan="1" rowspan="1">
+                                        <div class="layout-item cursor-pointer" fxLayoutAlign="center">
+                                            <div class="layout">
+                                                <div fxLayout="column" class="full-h">
+                                                    <div class="header" fxLayout="row" fxLayoutAlign="start center">
+                                                        <span class="p-5 fs-14" style="text-transform: inherit;">
+                                                            <strong>All Day Average Utilization of All Workpoints</strong>
+                                                        </span>
+                                                        <div fxFlex></div>
+                                                        <button mat-icon-button class="m-r-5">
+                                                            <mat-icon class="color-1 fs-18" aria-label="Close">open_with</mat-icon>
+                                                        </button>
+                                                        <div class="dropdown">
+                                                            <button mat-icon-button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <mat-icon class="color-1 fs-18 arrow-drop" aria-label="Close">arrow_drop_down</mat-icon>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <div class="p-x-10" fxLayout="column">
+                                                                    <a>{{'tags.dashboardsManagement.edit' | translate}}</a>
+                                                                    <a>{{'tags.dashboardsManagement.delete' | translate}}</a>
+                                                                    <a>{{'tags.dashboardsManagement.refresh' | translate}}</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dialog-body p-20 full-h" fxLayout="column">
+                                                        <div fxLayout="column" fxFlex>
+                                                            <div>
+                                                                <div class="form-group">
+                                                                    <label for="" fxFlex="30" fxLayoutAlign="start center">{{'tags.dashboardsManagement.client' | translate}}
+                                                                        <span style="color: red"> *</span>
+                                                                    </label>
+                                                                    <select fxFlex class="form-control" name="" id="">
+                                                                        <option>Hitachi Asia Singapore</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="" fxFlex="30" fxLayoutAlign="start center">{{'tags.dashboardsManagement.building' | translate}}</label>
+                                                                    <select fxFlex class="form-control" name="" id="">
+                                                                        <option>All</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="" fxFlex="30" fxLayoutAlign="start center">{{'tags.dashboardsManagement.floor' | translate}}</label>
+                                                                    <select fxFlex class="form-control" name="" id="">
+                                                                        <option>All</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group" fxLayout="row" fxFlexAlign="center center">
+                                                                    <label fxFlex="30" fxLayoutAlign="start center" for="">{{'tags.dashboardsManagement.daysPreviously' | translate}}
+                                                                        <span style="color: red"> *</span>
+                                                                    </label>
+                                                                    <input fxFlex required type="text" class="form-control" name="" id="" placeholder="" value="Dashboard 001">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="" fxFlex="30" fxLayoutAlign="start center">{{'tags.dashboardsManagement.refreshInterval' | translate}}</label>
+                                                                    <select fxFlex class="form-control" name="" id="">
+                                                                        <option>Every 10 menutes</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div fxLayout="row" fxFlexAlign="end center">
+                                                                <div fxFlex></div>
+                                                                <button mat-button class="common-btn m-r-25" (click)="cancel()">{{'tags.cancel' | translate}}</button>
+                                                                <button mat-button class="common-btn" (click)="save()">{{'tags.save' | translate}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <img src="{{layout.src}}" alt="{{layout.label}}"> -->
+                                        </div>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile colspan="1" rowspan="1">
+                                        <div class="layout-item cursor-pointer" fxLayoutAlign="center" style="background-color: #f5ededa1">
+                                            <div class="layout m-auto">
+                                                <a>{{'tags.dashboardsManagement.addNewChart' | translate}}</a>
+                                            </div>
+                                        </div>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

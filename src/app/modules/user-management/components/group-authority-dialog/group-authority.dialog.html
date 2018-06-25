@@ -1,0 +1,24 @@
+<common-dialog [title]="dataDialog.title" (onCloseHandler)="closeDialog()" [hideFooter]="true">
+  <div class="p-x-10" [style.height.px]="40" fxLayoutAlign="start center">
+    <span class="fs-18">{{'tags.userManagement.groupAuth' | translate}}</span>
+  </div>
+  <div class="table-wrapper wrap-table">
+    <table td-data-table>
+      <thead>
+        <tr td-data-table-column-row>
+          <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable"
+            [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric">
+            {{column.label}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr td-data-table-row *ngFor="let row of filteredData" class="clickable" (click)="onRowClick(row)">
+          <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+            {{column.format ? column.format(row[column.name]) : row[column.name]}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</common-dialog>

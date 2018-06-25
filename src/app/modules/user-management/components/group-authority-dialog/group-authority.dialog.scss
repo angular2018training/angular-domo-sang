@@ -1,0 +1,22 @@
+@import '~styles/variables';
+
+:host::ng-deep {
+  table.td-data-table {
+    width: 100% !important;
+  }
+  .page-title {
+    text-transform: initial;
+  }
+  .dialog-content {
+    padding: 0 10px;
+    margin: 5px 0;
+    height: calc(100% - 10px);
+  }
+
+  .table-wrapper {
+    margin: 0 10px 10px 10px;
+    height: calc(100% - 40px - 10px);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}

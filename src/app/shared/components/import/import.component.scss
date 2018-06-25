@@ -1,0 +1,28 @@
+@import '~styles/variables';
+@import '~styles/common';
+:host::ng-deep {
+  .content-wrapper {
+    padding: 10px;
+    min-height: 66px;
+    overflow: hidden;
+    .mat-form-field {
+      .mat-form-field-wrapper {
+        padding: 0;
+      }
+      .mat-form-field-underline {
+        position: static;
+      }
+    }
+    .td-file-input,
+    .td-file-upload {
+      line-height: 31px;
+      max-width: 88px;
+      @extend .truncate;
+    }
+    .td-file-upload-cancel {
+      left: 0;
+      top: 8px;
+    }
+  }
+}
+

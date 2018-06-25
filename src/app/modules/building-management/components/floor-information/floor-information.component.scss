@@ -1,0 +1,20 @@
+@import '~styles/common';
+@import '~styles/variables';
+.content {
+    position: relative;
+    padding: 10px
+}
+
+.action {
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    & mat-icon {
+        color: $tableHeadColor !important;
+        font-size: 25px;
+    }
+}
+
+.key {
+    font-weight: bold;
+}

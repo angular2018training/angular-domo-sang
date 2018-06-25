@@ -1,0 +1,147 @@
+<div fxFill id="tenant-user-create-dialog">
+  <div fxFill fxLayout="column">
+    <form [formGroup]="createUserForm">
+      <fieldset class="title-user-detail">
+        <div fxLayout="row" fxLayoutAlign="start center" class=" user-detail">
+          <span class="page-title" style="text-transform: inherit;">{{'tags.userManagement.createNewUser' | translate}}</span>
+          <div fxFlex></div>
+          <button mat-icon-button mat-dialog-close>
+            <mat-icon aria-label="Close">close</mat-icon>
+          </button>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+          <label fxFlex="20" for="">{{'tags.userManagement.email' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+            <input [(ngModel)]="adminModel.email" formControlName="email" required type="text" [pattern]="pattern" class="form-control "
+              [maxlength]="inputMaxName" style="margin-left: 35px;">
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="color-error fs-12">
+              <div *ngIf="email.errors.required">
+                {{'tags.message.required.field' | translate}}
+              </div>
+              <div *ngIf="email.errors?.pattern">
+                {{'tags.message.invalid.email' | translate}}
+              </div>
+            </div>
+            <div *ngIf="adminModel.email.length == 100" class="color-error fs-12">
+              {{'tags.message.length' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+          <label fxFlex="20" for="">{{'tags.userManagement.firstName' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+            <input [(ngModel)]="adminModel.firstName" formControlName="firstName" [pattern]="patternInput" required type="text" class="form-control input-main"
+              [maxlength]="inputMaxName">
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="color-error fs-12">
+              <div *ngIf="firstName.errors.required">
+                {{'tags.message.required.field' | translate}}
+              </div>
+              <div *ngIf="firstName.errors?.pattern">
+                Incorrect input
+              </div>
+            </div>
+            <div *ngIf="adminModel.firstName.length == 100" class="color-error fs-12">
+              {{'tags.message.length' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+          <label fxFlex="20" for="">{{'tags.userManagement.lastName' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+            <input [(ngModel)]="adminModel.lastName" formControlName="lastName" [pattern]="patternInput" required type="text" class="form-control input-main"
+              [maxlength]="inputMaxName">
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="color-error fs-12">
+              <div *ngIf="lastName.errors.required">
+                {{'tags.message.required.field' | translate}}
+              </div>
+              <div *ngIf="lastName.errors?.pattern">
+                Incorrect input
+              </div>
+            </div>
+            <div *ngIf="adminModel.lastName.length == 100" class="color-error fs-12">
+              {{'tags.message.length' | translate}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+           <label fxFlex="20" for="">{{'tags.userManagement.phone' | translate}}</label>
+          <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+            <input [(ngModel)]="adminModel.phone" formControlName="phone" [pattern]="numberPattern" type="text" class="form-control input-main"
+              [maxlength]="inputMaxPhone">
+            <div *ngIf=" adminModel.phone.length == 16" class="color-error fs-12">
+              {{'tags.message.invalid.phone.length' | translate}}
+            </div>
+            <div *ngIf="phone.errors?.pattern" class="color-error fs-12">
+              {{'tags.message.invalid.phone' | translate}}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+         <label fxFlex="20">{{'tags.userManagement.role' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div class="col-sm-5">
+            <select [(ngModel)]="adminModel.role" class="selectpicker" formControlName="role" required>
+              <option [value]="2">Consultant</option>
+              <option [value]="3">Super Consultant</option>
+            </select>
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="color-error-role">
+              <div *ngIf="role.errors.required">
+                {{'tags.message.required.field' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+          <label fxFlex="20">{{'tags.userManagement.language' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div class="col-sm-5">
+            <select [(ngModel)]="adminModel.language" class="selectpicker" formControlName="language" required>
+              <option [value]="1">English</option>
+              <option [value]="2">Japanese</option>
+            </select>
+            <div *ngIf="language.invalid && (language.dirty || language.touched)" class="color-error-role">
+              <div *ngIf="language.errors.required">
+                {{'tags.message.required.field' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+                  <label fxFlex="20">{{'tags.userManagement.status' | translate}}
+            <span style="color: red"> *</span>
+          </label>
+          <div class="col-sm-5">
+            <mat-radio-group [(ngModel)]="adminModel.status" formControlName="status" required>
+              <mat-radio-button [value]="1" selected>Enable</mat-radio-button>
+              <mat-radio-button style="margin-left: 115px;" [value]="2">Disable</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </fieldset>
+      <div fxLayout="row" class="m-r-10 pull-right">
+          <button mat-button class="common-btn btn-cancel" (click)="cancel()">{{'tags.cancel' | translate}}</button>
+          <button mat-button [mat-dialog-close]="true" class="common-btn " (click)="saveInfo()" [disabled]="createUserForm.invalid" >{{'tags.save' | translate}}</button>
+        </div>
+    </form>
+  </div>
+
+</div>

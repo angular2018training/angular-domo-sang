@@ -1,0 +1,57 @@
+<div fxLayout="row" class="buildings">
+  <div fxFlex="25" class="buildings-list p-20" [ngClass]="{'o-50': rightContent == 'create' || rightContent == 'edit'}">
+    <div class="buildings-list-header" fxLayout="column" fxLayoutAlign="center center">
+      <span class="building-title">{{'tags.buildingManagement.title' | translate}}</span>
+      <div fxLayout="row" fxLayoutAlign="start center" class="m-y-20 max-w">
+        <div class="search-box m-r-25" fxLayout="row">
+          <mat-icon class="color-1">search</mat-icon>
+          <input class="someInputdisplay" placeholder="{{'tags.search' | translate}}" #search [disabled]="rightContent == 'create' || rightContent == 'edit'"
+          />
+        </div>
+        <button mat-button class="common-btn" (click)="createBuilding()" [disabled]="rightContent == 'create' || rightContent == 'edit' || publishStatus == 1">
+          {{'tags.buildingManagement.new' | translate}}</button>
+      </div>
+    </div>
+    <div *ngIf="filteredData.length !== 0" class="buildings-list-body">
+      <ul fxLayout="column">
+        <li *ngFor="let building of filteredData">
+          <div fxLayout="row">
+            <button mat-icon-button [disabled]="rightContent == 'create' || rightContent == 'edit'" (click)="showSubMenu(building.id, !building.isShow)">
+              <mat-icon class="fs-35" *ngIf="building.isShow == false">arrow_drop_down</mat-icon>
+              <mat-icon class="fs-35" *ngIf="building.isShow == true">arrow_drop_up</mat-icon>
+            </button>
+            <a class="m-l-5 color-black truncate" (click)="showBuildingDetail(building.id, true)" [ngClass]="{'selected-item': selectedBuilding == building.id && selectedFloor == null}"
+              *ngIf="rightContent !== 'create' && rightContent !== 'edit'">{{building.name}}</a>
+            <p class="m-l-5 color-black truncate" [ngClass]="{'selected-item': selectedBuilding == building.id && selectedFloor == null}"
+              *ngIf="rightContent == 'create' || rightContent == 'edit'">{{building.name}}</p>
+          </div>
+          <ul *ngIf="building.isShow == true">
+            <li *ngFor="let floor of building.floors">
+              <div fxLayout="row">
+                <a class="color-black truncate" (click)="showFloorDetail(building.id, floor.id, true)" [ngClass]="{'selected-item': (selectedFloor == floor.id) && (selectedBuilding == building.id)}"
+                  *ngIf="rightContent !== 'create' && rightContent !== 'edit'">{{floor.name}}</a>
+                <p class="color-black truncateds" [ngClass]="{'selected-item': (selectedFloor == floor.id) && (selectedBuilding == building.id)}"
+                  *ngIf="rightContent == 'create' || rightContent == 'edit'">{{floor.name}}</p>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="filteredData.length == 0" class="buildings-list-body" fxLayout="row" fxLayoutAlign="center center">
+      <span class="building-title">{{'tags.message.notFound' | translate}}</span>
+    </div>
+  </div>
+  <div fxFlex="75" class="right-content" *ngIf="rightContent == 'buildingDetail'">
+    <app-building-details [buildingId]="selectedBuilding" *ngIf="selectedBuilding"></app-building-details>
+  </div>
+  <div fxFlex="75" class="right-content" *ngIf="rightContent == 'floorDetail'">
+    <app-floor-details [floorId]="selectedFloor" *ngIf="selectedFloor"></app-floor-details>
+  </div>
+  <div fxFlex="75" class="right-content" *ngIf="rightContent == 'create'">
+    <app-building-create [timezones]="timezones"></app-building-create>
+  </div>
+  <div fxFlex="75" class="right-content" *ngIf="rightContent == 'edit'">
+    <app-building-edit [dataBuilding]="dataBuilding" [timezones]="timezones"></app-building-edit>
+  </div>
+</div>

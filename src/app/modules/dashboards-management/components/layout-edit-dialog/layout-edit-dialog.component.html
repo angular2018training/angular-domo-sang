@@ -1,0 +1,33 @@
+<div fxFill>
+  <div fxFill fxLayout="column">
+    <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+      <span class="page-title" style="text-transform: inherit;">{{'tags.dashboardsManagement.editLayout' | translate}}</span>
+      <div fxFlex></div>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon aria-label="Close">close</mat-icon>
+      </button>
+    </div>
+    <div class="dialog-body p-20 full-h" fxLayout="column">
+      <div>
+        <strong>{{'tags.dashboardsManagement.chooseDashboard' | translate}}</strong>
+      </div>
+      <div class="m-t-5 dialog-body-content" fxFlex fxLayout="column" fxLayoutAlign="center">
+        <mat-grid-list class="layout-container" cols="5" rowHeight="120px">
+          <mat-grid-tile *ngFor="let layout of layouts" colspan="1" rowspan="1">
+            <div class="layout-item cursor-pointer">
+              <img src="{{layout.src}}" alt="{{layout.label}}">
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+    <div class="dialog-footer">
+      <div fxFlex></div>
+      <div fxLayoutAlign="start center">
+        <div>
+          <button mat-button [mat-dialog-close]="true" class="common-btn">{{'tags.cancel' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

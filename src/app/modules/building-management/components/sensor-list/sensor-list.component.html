@@ -1,0 +1,72 @@
+<div fxLayout="column">
+    <div class="title" fxLayoutAlign="start center">
+        <span class="m-l-10" fxFlex>{{'tags.floorManagement.sensorList' | translate}}</span>
+        <span *ngIf="lastModifiedDate" class="m-r-10">{{'tags.floorManagement.lastUpdateDate' | translate}}: {{lastModifiedDate | datex:'YYYY-MM-DD'}}</span>
+        <span *ngIf="!lastModifiedDate" class="m-r-10">{{'tags.floorManagement.lastUpdateDate' | translate}}: N/A</span>
+    </div>
+    <div class="content">
+        <div fxLayout="row" class="p-y-10">
+            <div fxLayout="column" style="overflow: hidden;">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <td-file-input class="m-r-20" #fileInput (select)="selectEvent($event)" accept=".csv, .xlsx, .xls" multiple>
+                        <mat-icon>folder</mat-icon>
+                        <span>{{'tags.browse' | translate}}...</span>
+                    </td-file-input>
+                    <span *ngIf="sensors?.name" class="p-x-10">{{ sensors.name }}</span>
+                    <span *ngIf="!sensors?.name" class="p-x-10">No file selected</span>
+                </div>
+                <div class="m-t-10">
+                    <button mat-button class="common-btn" type="button" [disabled]="!sensors" (click)="uploadFile()">{{'tags.upload' | translate}}</button>
+                </div>
+            </div>
+            <div fxFlex></div>
+            <div style="display:block">
+                <button mat-button class="red-btn m-l-5" (click)="deleteAllSensorConfirm()" [disabled]="clientPublishStatus == 1 || filteredData?.length == 0">{{'tags.floorManagement.sensorList.delete' | translate}}</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="sensor-table">
+                <span class="sensor-title">{{'tags.floorManagement.sensorList.connections' | translate}}</span>
+                <app-connections [dataConnection]="dataConnection"></app-connections>
+            </div>
+            <div class="sensor-table">
+                <span class="sensor-title">{{'tags.floorManagement.sensorList.sensor' | translate}}</span>
+                <div class="page-content m-t-5" fxLayout="column">
+                    <div class="overflow-a m-t-5 wrap-table" [ngClass]="{'full-h': filteredData?.length != 0}">
+                        <table td-data-table>
+                            <thead>
+                                <tr td-data-table-column-row>
+                                    <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable" [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric" [width]="column.width">
+                                        {{column.label | translate}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr td-data-table-row *ngFor="let row of filteredData; let j = index" class="clickable" [ngClass]="{'bg-gray': j%2!==0}">
+                                    <td td-data-table-cell *ngFor="let column of columns; let i = index" [numeric]="column.numeric">
+                                        {{column.format ? column.format(row[column.name]) : row[column.name]}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <td-paging-bar *ngIf="filteredData?.length != 0" #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+                        <span hide-xs>Page : </span>
+                        <span hide-xs>{{'tags.rowPerPage' | translate}}:</span>
+                        <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
+                            <mat-option *ngFor="let size of pageSizes" [value]="size">
+                                {{size}}
+                            </mat-option>
+                        </mat-select>
+                        <span>{{pagingBar.range}}</span>
+                        <span hide-xs>{{'tags.of' | translate}} {{pagingBar.total}}</span>
+                    </td-paging-bar>
+                    <div *ngIf="filteredData?.length == 0" fxFlex fxLayoutAlign="center center">
+                        <span class="building-title">{{'tags.message.notFound' | translate}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

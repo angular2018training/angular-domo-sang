@@ -1,0 +1,92 @@
+@import '~styles/variables';
+.dash-board {
+    height: calc(100% - 50px);
+    padding: 20px;
+    .left-contain {
+        float: left;
+    }
+}
+
+.project-name {
+    position: fixed;
+    right: 30px;
+    top: 43px;
+}
+
+.time {
+    font-size: 17px;
+    line-height: 1.5;
+    left: 155px;
+}
+
+ul {
+    list-style-type: none;
+    -webkit-padding-start: 20px;
+    margin: 0;
+}
+
+li a {
+    width: 90%;
+    height: 90%;
+    text-decoration: none !important;
+    color: $colorB;
+    padding-left: 10px;
+}
+
+li a:hover {
+    cursor: pointer;
+    text-decoration: none !important;
+    background-color: $colorHover !important;
+}
+
+.tab-content {
+    height: 100%;
+    overflow: auto;
+    border: solid 1px $borderColorLight;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.form-group.row.right-contain {
+    /* float: right; */
+    /* position: initial; */
+    height: 60px;
+    left: 500px;
+    position: relative;
+    /* display: inline-block; */
+}
+
+.col-form-label {
+    left: 240px;
+    position: relative;
+    font-size: 17px;
+}
+
+:host::ng-deep {
+    // .mat-tab-group {
+    //     height: 100%;
+    // }
+    .mat-tab-nav-bar,
+    .mat-tab-header {
+        border: none;
+    }
+    .mat-tab-link {
+        text-decoration: none !important;        
+        border: solid 1px $borderColorLight;
+        height: 40px;
+        // min-width: 200px;
+        background-color: $colorW;
+        opacity: 1;
+    }
+    .mat-tab-label-active {
+        background-color: $tabColor !important;
+        color: $colorW;
+    }
+    .mat-ink-bar {
+        background-color: $tabColor !important;
+    }
+}
+
+.project-dash-board {
+    background-color: rgb(238, 238, 238);
+}

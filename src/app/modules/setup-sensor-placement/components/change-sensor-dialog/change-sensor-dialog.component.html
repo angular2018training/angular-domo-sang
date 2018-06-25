@@ -1,0 +1,33 @@
+<div fxFill>
+    <div fxFill fxLayout="column">
+        <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+            <span class="page-title fs-16" style="text-transform: inherit;">{{'tags.floorManagement.sensorList' | translate}}</span>
+            <div fxFlex></div>
+        </div>
+        <div class="sensor-list-body">
+            <div class="sensor-list-body__content">
+                <div *ngFor="let sensorType of filteredData">
+                    <span class="p-5 type">{{sensorType.sensorType}}</span>
+                    <mat-grid-list cols="2" rowHeight="80px">
+                        <mat-grid-tile *ngFor="let sensor of sensorType.sensorsList" [colspan]="1" [rowspan]="1" [ngClass]="{'selected': selectedItem.id == sensor.id }">
+                            <div fxLayout="column" class="sensor-item cursor-pointer" fxLayoutAlign="center center" (click)="selectSensor(sensor)">
+                                <div class="sensor">
+                                    <img width="100%" height="100%" src="assets/img/sensor.png" class="img-fluid rounded-top" alt="">
+                                </div>
+                                <span class="fs-10 fw-bold">{{sensor.sensorName}}</span>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-footer" fxLayout="row" fxLayoutAlign="center center">
+            <div class="m-r-10">
+                <button mat-button class="common-btn" (click)="changeSensor()">{{'tags.setupSensorPlacement.change' | translate}}</button>
+            </div>
+            <div>
+                <button mat-button mat-dialog-close class="common-btn" (click)="closeDialog()">{{'tags.cancel' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

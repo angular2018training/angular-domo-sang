@@ -1,0 +1,92 @@
+input.ng-touched.ng.invalid {
+    border: 1px solid red;
+}
+
+#title {
+    color: #6EA7DB;
+    font-weight: bold;
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+#system-configuration {
+    height: 85%;
+    overflow: auto; 
+    #last-body {
+        height: 20%;
+        padding-bottom: 1%;
+    }
+    .time-unit,
+    
+    .day {
+        margin-left: 10px;
+        // margin-top: 10px;
+    }
+    .form-group {
+        margin: 0;
+        .left-columm {
+            float: left;
+            margin-right: 30px;
+            margin-left: 15px;
+        }
+        &.row {
+            padding-top: 20px;
+        }
+    }
+    .border {
+        padding-left: 40px;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        margin: 30px;
+    }
+    .border>p {
+        font-size: 20px;
+        color: #6EA7DB;
+        font-weight: bold;
+    }
+    label {
+        font-weight: unset;
+    }
+    hr {
+        margin-left: -40px;
+        margin-right: 10px;
+    }
+    // .col-sm-4 {
+    //     padding-top: 10px;
+    // }
+    .btn {
+        margin-top: 10px;
+    }
+    .last-body-button {
+        text-align: right;
+        /*position: absolute;*/
+        /*right: 50px;*/
+        /*bottom: 60px;*/
+        padding-right: 2%;
+    }
+    .copyright-text {
+        margin-left: auto;
+    }
+    .btn {
+        background-color: #6EA7DB;
+        color: white;
+    }
+    .selectpicker1 {
+        height: 34px;
+        width: 72px;
+    }
+    .selectpicker2 {
+        height: 34px;
+        width: 52px;
+    }
+    .selectpicker {
+        height: 34px;
+        width: 108%
+    }
+    .box-shadow-t {
+        box-shadow: 0 -1px 0px 0px rgba(0, 0, 0, 0.15), 0 -2px 5px 0 rgba(0, 0, 0, 0.15), 0px -1px 5px 0 rgba(0, 0, 0, 0.15), 0px 1px 5px 0 rgba(0, 0, 0, 0.15);
+    }
+}
+.minues-left{
+    margin-left: 20%;
+}

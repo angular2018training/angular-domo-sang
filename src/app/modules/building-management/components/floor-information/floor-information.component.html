@@ -1,0 +1,34 @@
+<div fxLayout="column">
+  <div fxLayout="row" class="title" fxLayoutAlign="start center">
+    <span class="m-l-10" fxFlex>{{'tags.floorManagement.information' | translate}}</span>
+    <span *ngIf="dataFloor.lastModifedDate" class="m-r-10">{{'tags.floorManagement.lastUpdateDate' | translate}}: {{dataFloor.lastModifedDate | datex:'YYYY-MM-DD'}}</span>
+    <span *ngIf="!dataFloor.lastModifedDate" class="m-r-10">{{'tags.floorManagement.lastUpdateDate' | translate}}: N/A</span>
+  </div>
+  <div class="content">
+    <div fxLayout="row" class="action">
+      <div fxFlex></div>
+      <button mat-icon-button (click)="editFloor()" [disabled]="publishStatus == 1">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteFloorConfirm()" [disabled]="publishStatus == 1">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </div>
+    <div class="information" fxLayout="row">
+      <div fxFlex="20" class="key">
+        <p>{{'tags.floorManagement.floorID' | translate}}</p>
+        <p>{{'tags.floorManagement.floorName' | translate}}</p>
+        <p>{{'tags.floorManagement.floorLevel' | translate}}</p>
+        <p>{{'tags.floorManagement.buildingName' | translate}}</p>
+        <p>{{'tags.floorManagement.clientName' | translate}}</p>
+      </div>
+      <div fxFlex class="value">
+        <p>{{dataFloor.id}}</p>
+        <p style="white-space: pre-wrap;">{{dataFloor.name}}</p>
+        <p>{{dataFloor.floorLevel}}</p>
+        <p>{{dataFloor.buildingName}}</p>
+        <p>{{dataFloor.clientName}}</p>
+      </div>
+    </div>
+  </div>
+</div>

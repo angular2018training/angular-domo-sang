@@ -1,0 +1,23 @@
+.stacked-area-chart-legend {
+    .legend-text {
+        font-size: 25px;
+    }
+    .legend-line {
+        background: rgb(23, 107, 168);
+        width: 15px;
+        height: 3px;
+        position: relative;
+        top: -6px;
+        display: inline-block;
+        margin-left: 4px;
+        margin-right: 6px;
+    }
+    .legend-star-symbol {
+        font-size: 30px;
+        color: rgb(23, 107, 168);
+    }
+}
+
+.center {
+    justify-content: center;
+}

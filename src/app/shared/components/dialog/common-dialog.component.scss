@@ -1,0 +1,18 @@
+@import '~styles/variables';
+
+:host::ng-deep {
+  .content-dialog {
+    height: 100%;
+    overflow: auto;
+  }
+  .dialog-footer {
+    .action-item:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+  .dialog-header {
+    .page-title {
+      text-transform: initial;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@import '~styles/variables';
+@import '~styles/common';
+.demo-tab-content {
+    padding: 16px;
+}
+
+.dash-content {
+    height: 100%;
+}
+
+.m-r-60 {
+    margin-right: 60px;
+}
+.dropdown-menu {
+    right: 0 !important;
+    left: initial;
+    // min-width: 210px;
+    & a {
+        text-decoration: none;
+        color: $colorB;
+        padding: 2px 5px;
+        font-size: 12px;
+        &:hover{
+            text-decoration: none;
+            background-color: $tabColor;
+            color: $colorW;
+        }
+    }
+}
+:host::ng-deep {
+    .mat-tab-group {
+        flex-direction: row;
+        height: 100%;
+    }
+    .mat-tab-header {
+        border: none;
+        margin-right: -1px;
+    }
+    .mat-tab-labels {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .mat-tab-label {
+        border: solid 1px $borderColorDark;
+        height: 40px;
+        min-width: 200px;
+        background-color: $borderColorLight;
+        opacity: 1;
+    }
+    .mat-tab-label-active {
+        background-color: $colorW !important;
+        color: $colorB;
+        border-right: 0
+    }
+    .mat-ink-bar {
+        display: none;
+    }
+    .mat-tab-body-wrapper {
+        height: calc(100% - 25px);
+        padding: 20px;
+        width: 100%;
+        border: solid 1px $borderColorDark;
+    }
+}
+
+.layout-item {
+    width: 100%;
+    height: calc(100% - 20px);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .24), 0 1px 5px 0 rgba(0, 0, 0, .22);
+    margin: 5px;
+    >.layout {
+        width: 100%;
+        // margin: auto;
+        overflow: hidden;
+        text-align: center;
+    }
+}
+img {
+    width: 100%;
+    height: 100%;
+}
+.header {
+    border-bottom: solid 1px $borderColorDark;
+    background-color: $colorButton;
+}
+.arrow-drop {
+    border: solid 2px;
+    line-height: 20px;
+}

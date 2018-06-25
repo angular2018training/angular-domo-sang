@@ -1,0 +1,32 @@
+.other-data{
+    height: 100%;
+}
+fieldset {
+    height: calc(100% - 50px);
+}
+.workforce-data {
+    height: 450px;
+}
+.meeting-room {
+    height: 450px;
+}
+.mapping-data {
+    height: 450px;
+}
+:host::ng-deep {
+    .td-data-table-row {
+        height: 34px !important;
+    }
+    table.td-data-table .td-data-table-column-row {
+        height: 36px !important;
+    }
+    .mat-icon-button {
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+    }
+    button.mat-icon-button.ng-star-inserted {
+        height: auto;
+        line-height: 31px;
+    }
+}

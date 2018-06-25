@@ -1,0 +1,24 @@
+@import '~styles/variables';
+@import '~styles/common';
+.content {
+    padding: 10px
+}
+.sensor-table {
+    height: 270px;
+}
+:host::ng-deep {
+    .td-data-table-row {
+        height: 30px !important;
+    }
+    table.td-data-table .td-data-table-column-row {
+        height: 32px !important;
+    }
+    button.mat-icon-button.ng-star-inserted {
+        height: auto;
+        line-height: 31px;
+    }
+    .sensor-title {
+        color: $tabColor;
+        font-size: 18px;
+    }
+}

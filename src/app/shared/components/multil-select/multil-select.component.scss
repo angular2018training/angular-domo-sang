@@ -1,0 +1,59 @@
+@import '~styles/variables';
+
+::ng-deep {
+  .mat-option-text {
+    font-size: 13px !important;
+    color: $colorB;
+  }
+  .mat-optgroup-label {
+    font-size: 15px !important;
+    background-color: rgba(0, 0, 0, .1);
+    color: $color1;
+    // border-top: .5px solid $colorBorder;
+  }
+  .search-input-custom::ng-deep {
+    width: 90% !important;
+    margin: 5px 0;
+    .mat-form-field-infix {
+      display: flex !important;
+      border: none;
+    }
+    .mat-form-field-wrapper {
+      padding: 0;
+    }
+    .mat-form-field-underline {
+      position: static;
+      .mat-form-field-ripple {
+        top: inherit;
+      }
+    }
+    mat-icon {
+      font-size: 18px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .mat-checkbox-custom {
+    display: block;
+    height: 48px;
+    font-size: 13px;
+    color: $color1;
+    .mat-checkbox-layout {
+      display: flex;
+      flex-grow: 1;
+      height: 100%;
+      align-items: center;
+      .mat-checkbox-inner-container {
+        margin: auto 0;
+        margin-right: 8px;
+        .mat-checkbox-label {
+          flex-grow: 1;
+          line-height: 48px;
+        }
+      }
+    }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}

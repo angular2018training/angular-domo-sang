@@ -1,0 +1,58 @@
+@import '~styles/variables';
+@import '~styles/common';
+:host::ng-deep {
+    .mat-tab-group {
+        flex-direction: row;
+        height: 100%;
+    }
+    .mat-tab-header {
+        margin-right: 10px;
+        border: none;
+    }
+    .mat-tab-labels {
+        flex-direction: column;
+        border: solid 2px $borderColorDark;
+    }
+    .mat-tab-label {
+        // border: solid 1px $borderColorLight;
+        height: 30px;
+        min-width: 200px;
+        background-color: $colorW;
+        opacity: 1;
+        justify-content: left;
+    }
+    .mat-tab-label-active {
+        background-color: $colorButton !important;
+        color: $colorB;
+    }
+    .mat-ink-bar {
+        display: none;
+    }
+    .mat-tab-body-wrapper {
+        height: 100%;
+        padding: 20px;
+        width: 100%;
+        border: solid 2px $borderColorDark;
+    }
+}
+
+.layout-item {
+    width: 100%;
+    height: calc(100% - 10px);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .24), 0 1px 5px 0 rgba(0, 0, 0, .22);
+    margin: 5px;
+    >.layout {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        text-align: center;
+    }
+    >img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.layout-item:hover {
+    background-color: rgba(0, 0, 0, .22)
+}

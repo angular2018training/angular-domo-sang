@@ -1,0 +1,21 @@
+<!-- <div id="heatMap"></div> -->
+<div>
+  <b class="chart-title">{{config.title}}</b>
+</div>
+<div id="{{id}}Legend" class="legend" *ngIf="config.legend.show && imgSrc && data && data.length > 0" fxLayout="row" fxLayoutGap="10px" fxLayoutWrap fxLayout.xs="column">
+  <div *ngFor="let color of config.rangeColor" fxLayout="row">
+    <span [ngStyle]="{'background': color.color}" class="icon"></span>
+    <span>{{color.label}}</span>
+  </div>
+</div>
+<div style="position: relative">
+  <img src="{{imgSrc}}" [ngStyle]="{'width': imgSize.width, height: imgSize.height}" alt="">
+  <div id="{{id}}" style="position: absolute; top: 0" [ngStyle]="{'width': imgSize.width, height: imgSize.height}" (click)="onClickEvent($event)">
+
+  </div>
+  <div *ngIf="!imgSrc && (!data || data.length === 0)" fxLayout="row" fxLayoutAlign="center center">
+    <b class="no-data">No Data</b>
+  </div>
+
+  <div id="{{id}}Tooltip" class="tooltip-chart" hidden></div>
+</div>

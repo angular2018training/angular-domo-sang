@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <div fxLayout="column">
+      <div fxLayout="row" class="detail-button">
+        <div fxFlex></div>
+        <button mat-icon-button (click)="editBuilding(data)" [disabled]="publishStatus == 1">
+          <mat-icon class="color-1" aria-label="Edit">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteBuildingConfirm($event)" [disabled]="publishStatus == 1">
+          <mat-icon class="color-1" aria-label="Delete">delete</mat-icon>
+        </button>
+      </div>
+      <div class="p-y-5 truncate" style="width: 90%">
+        <span class="building-title">{{data.name}}</span>
+      </div>
+    </div>
+    <div fxLayout="row" class="detail">
+      <div class="detail-image" fxLayoutAlign="center center">
+        <div *ngIf="data?.base64?.length == 0">
+          No Image
+        </div>
+        <img *ngIf="data?.base64?.length !== 0" width="100%" height="100%" src="{{data?.base64}}" alt="{{data?.imageRef}}" onmousedown="return false">
+      </div>
+      <div fxFlex class="m-l-20 detail-content">
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <p class="fw-bold" fxFlex="20">{{'tags.buildingManagement.address' | translate}}: </p>
+            <p fxFlex>{{data.address}}</p>
+          </div>
+          <div fxLayout="row">
+            <p class="fw-bold" fxFlex="20">{{'tags.buildingManagement.area' | translate}}: </p>
+            <p fxFlex>{{data.area}}</p>
+          </div>
+          <div fxLayout="row">
+            <p class="fw-bold" fxFlex="20">{{'tags.buildingManagement.numberOfFloors' | translate}}: </p>
+            <p fxFlex>{{data.numberOfFloors}}</p>
+          </div>
+          <div fxLayout="row">
+            <p class="fw-bold" fxFlex="20">{{'tags.buildingManagement.capacity' | translate}}: </p>
+            <p fxFlex>{{data.capacity}}</p>
+          </div>
+          <div fxLayout="row">
+            <p class="fw-bold" fxFlex="20">{{'tags.buildingManagement.timezone' | translate}}: </p>
+            <p fxFlex>{{data.timezoneName}}</p>
+          </div>
+        </div>
+        <div>
+          <p class="wb">
+            {{data.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="m-t-20" fxLayout="column">
+  <div>
+    <span class="building-title">Floor list</span>
+  </div>
+  <div class="floor-list-content" fxLayout="column">
+    <div class="p-20">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <td-file-input [disabled]="publishStatus == 1" class="m-r-20" #fileInput (select)="selectEvent($event)" accept=".csv, .xlsx, .xls">
+          <mat-icon>folder</mat-icon>
+          <span>{{'tags.browse' | translate}}...</span>
+        </td-file-input>
+        <span *ngIf="floors?.name" class="p-x-10">{{ floors?.name }}</span>
+        <span *ngIf="!floors?.name" class="p-x-10">No file selected</span>
+      </div>
+      <div class="m-t-10">
+        <button mat-button class="common-btn" type="button" [disabled]="!floors" (click)="uploadFile()">{{'tags.upload' | translate}}</button>
+      </div>
+    </div>
+    <div class="m-t-5" fxLayout="column" *ngIf="data?.floors.length != 0">
+      <mat-grid-list class="floor-container" cols="5">
+        <mat-grid-tile *ngFor="let floor of data?.floors" colspan="1" rowspan="1">
+          <div class="floor-item cursor-pointer" fxLayout="column" (click)="showFloorDetail(floor)">
+            <div class="floor">
+              {{floor.name}}
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div>
+</div>

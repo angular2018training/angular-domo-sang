@@ -1,0 +1,13 @@
+<div *ngIf="data">
+    <h1>Utilization of workpoints across business unit</h1>
+    <div>
+        <stacked-column style="float: left;" [id]="stackedBar.chartId" [data]="stackedBar.data" [config]="stackedBar.config"> </stacked-column>
+        <div *ngIf="showDescription" style="float: left; width:300px; text-align:justify" >
+            The Utilization patterns show the percentage of using meetings follow 3 Utilization types: Empty/Full Day away/half day away, Intermittently Away, Occupied by business unit. The meeting rooms will need to be rebalanced by business unit
+            Enclose or open collaborative spaces should be provided for each business unit.
+        </div>
+    </div> 
+</div>
+<div *ngIf="!data">
+    <h1>No result found</h1>
+</div>

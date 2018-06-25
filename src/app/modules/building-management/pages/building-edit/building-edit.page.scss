@@ -1,0 +1,46 @@
+@import '~styles/variables';
+@import '~styles/common';
+.card {
+    height: 320px;
+}
+
+.card-import {
+    border: dashed 2px $borderColorLight;
+    position: relative;
+    width: 500px;
+    @media screen and (max-height: 720px) {
+        width: 400px;
+    }
+}
+
+.card-content {
+    overflow: auto;
+}
+
+.remove-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+:host::ng-deep {
+    textarea.description {
+        resize: none;
+    }
+    button.td-file-upload.mat-raised-button.mat-warn {
+        display: none
+    }
+    button.td-file-upload-cancel {
+        top: -120px;
+        left: 278px;
+        color: $tableHeadColor;
+    }
+    .card-import .mat-raised-button {
+        background-color: $colorW;
+        color: $tableHeadColor !important;
+        box-shadow: none;
+    }
+    .mat-raised-button:not([disabled]):active:not([class*=mat-elevation-z]) {
+        box-shadow: none;
+    }
+}

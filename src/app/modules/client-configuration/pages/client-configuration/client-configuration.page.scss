@@ -1,0 +1,35 @@
+@import '~styles/variables';
+@import '~styles/common';
+:host::ng-deep {
+  .mat-checkbox-label {
+    color: $color1;
+    font-size: 14px;
+  }
+  mat-form-field {
+    &.mat-focused {
+      mat-icon {
+        color: $color1;
+      }
+      .mat-input-placeholder {
+        color: $colorB;
+      }
+    }
+    &:not(.mat-focused) {
+      .mat-input-placeholder {
+        color: $colorB;
+      }
+      mat-icon {
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+    &.mat-form-field-invalid .mat-form-field-label {
+      color: #f44336;
+    }
+  }
+  .form-wrapper {
+    overflow: auto;
+    .item {
+      width: 40%;
+    }
+  }
+}

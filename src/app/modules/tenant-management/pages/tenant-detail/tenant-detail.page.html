@@ -1,0 +1,114 @@
+<div class="title">
+  <label>{{'tags.partners.partnerDetail' | translate}}</label>
+</div>
+
+<mat-horizontal-stepper linear class="new-tenant-stepper">
+  <mat-step>
+    <ng-template matStepLabel>{{'tags.partners.generalInfo' | translate}}</ng-template>
+
+    <form novalidate #tenantDetailForm="ngForm">
+      <div id="body">
+        <div id="first-body">
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.partnerID' | translate}}</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.tenantId" name="tenantId" disabled>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.partnerName' | translate}}
+              <span style="color: red"> *</span>
+            </label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.name" #name="ngModel" name="name" required [maxlength]="inputMaxName"
+                [pattern]="patternInput">
+              <div *ngIf="name.errors?.pattern" class="color-error fs-12">
+                {{'tags.message.required.field' | translate}}
+              </div>
+              <div *ngIf="tenantModel.name.length == 0" class="color-error fs-12">
+                {{'tags.message.required.field' | translate}}
+              </div>
+              <div *ngIf="tenantModel.name && tenantModel.name.length == 100" class="color-error fs-12">
+                {{'tags.message.length' | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.email' | translate}} </label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.email" name="email" disabled>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.phone' | translate}} </label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.phone" name="phone" #phone="ngModel" [pattern]="numberPattern"
+                [maxlength]="inputMaxPhone">
+              <div *ngIf="tenantModel.phone && tenantModel.phone.length == 16" class="color-error fs-12">
+                {{'tags.message.invalid.phone.length' | translate}}
+              </div>
+              <div *ngIf="phone.errors?.pattern" class="color-error fs-12">
+                {{'tags.message.invalid.phone' | translate}}
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.country' | translate}} </label>
+            <div class="col-sm-5">
+              <select class="selectpicker" [(ngModel)]="tenantModel.country" name="country" (change)="getProvinceByIdCountry()">
+                <option *ngFor="let item of country" [value]="item.countryId">{{item.countryName}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.province' | translate}}</label>
+            <div class="col-sm-5">
+              <select class="selectpicker" [(ngModel)]="tenantModel.province" name="province">
+                <option *ngFor="let item of province" [value]="item.provinceId">{{item.provinceName}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.address' | translate}}</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.address" name="address" #address="ngModel" [pattern]="patternInput"
+                [maxlength]="inputMaxName">
+              <div *ngIf="tenantModel.address && tenantModel.address.length == 100" class="color-error fs-12">
+                {{'tags.message.length' | translate}}
+              </div>
+              <div *ngIf="address.errors?.pattern" class="color-error fs-12">
+                Invalid input
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-1 col-form-label">{{'tags.partners.postalCode' | translate}} </label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" [(ngModel)]="tenantModel.postalCode" name="postalCode" #postalCode="ngModel" [pattern]="patternInput"
+                [maxlength]="inputMaxName">
+              <div *ngIf="tenantModel.postalCode && tenantModel.postalCode.length == 100" class="color-error fs-12">
+                {{'tags.message.length' | translate}}
+              </div>
+              <div *ngIf="postalCode.errors?.pattern" class="color-error fs-12">
+                Invalid input
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" class="m-r-10">
+        <button mat-button class="common-btn" (click)="updateTenantDetail()" [disabled]="tenantDetailForm.invalid || valueChange">{{'tags.updateDetail' | translate}}</button>
+      </div>
+
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>{{'tags.partners.user' | translate}}</ng-template>
+    <app-user-tenant-page [tenantInfo]="tenantModel"></app-user-tenant-page>
+  </mat-step>
+
+</mat-horizontal-stepper>

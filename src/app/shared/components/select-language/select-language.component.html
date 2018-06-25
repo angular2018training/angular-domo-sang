@@ -1,0 +1,30 @@
+<mat-form-field *ngIf="!onlyIcon">
+  <mat-select [(ngModel)]="selectedValue" (change)="onLanguageChanged()">
+    <mat-select-trigger>
+      <div class="language-item" fxLayoutAlign="start center">
+        <img [src]="language.image" />
+        <span>{{language.name}}</span>
+      </div>
+    </mat-select-trigger>
+    <mat-option class="language-item" fxFlex [value]="lg.value" *ngFor="let lg of languages">
+      <div fxLayoutAlign="start center">
+        <img [src]="lg.image" />
+        <span>{{lg.name}}</span>
+      </div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div *ngIf="onlyIcon">
+  <button class="hover-color-2" mat-icon-button [matMenuTriggerFor]="menu">
+    <img [src]="language.image" />
+  </button>
+  <mat-menu #menu="matMenu" [yPosition]="'below'" [overlapTrigger]="false">
+    <button *ngFor="let lg of languages" mat-menu-item (click)="onLanguageClick(lg)">
+      <div fxLayoutAlign="start center">
+        <img [src]="lg.image" />
+        <span class="m-l-10 fs-14">{{lg.name}}</span>
+      </div>
+    </button>
+  </mat-menu>
+</div>

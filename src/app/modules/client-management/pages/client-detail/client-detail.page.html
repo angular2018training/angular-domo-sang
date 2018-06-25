@@ -1,0 +1,150 @@
+<div class="main">
+    <div id="body">
+        <div class="border box-shadow-t">
+            <div id="header-body">
+                <p style="font-size: 20px">{{'tags.clientManagement.information' | translate}} </p>
+            </div>
+            <form [formGroup]="createClientForm" (ngSubmit)="onSaveClick()" #ClientDetailForm="ngForm">
+                <div id="body-first">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.id' | translate}} 
+                        </label>
+                        <div class="col-sm-5">
+                            <input class="form-control" fxFlex="100" [(ngModel)]="clientdetail.id" disabled formControlName="id">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.clientName' | translate}} 
+                        <span style="color: red"> *</span>
+                    </label>
+                        <div class="col-sm-5">
+                            <input id="name" [(ngModel)]="clientdetail.name" required type="text" formControlName="name" class="form-control" [maxlength]="inputMaxName">
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="color-error fs-12">
+                                <div *ngIf="name.errors.required">
+                                    {{'tags.message.required.field' | translate}}
+                                </div>
+                            </div>
+                            <div *ngIf="clientdetail.name && clientdetail.name.length > 100" class="color-error fs-12">
+                                {{'tags.message.length' | translate}}
+                            </div>
+                            <div *ngIf="name.errors?.pattern" class="color-error fs-12">
+                                {{'tags.message.invalid.input' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.consultingPartner' | translate}} 
+                        <span style="color: red"> *</span>
+                    </label>
+                        <div class="col-sm-5">
+                            <ng-select [items]='tenant' bindLabel="name" bindValue="id" [(ngModel)]="clientdetail.tenantId" formControlName="tenantId" (change)="changePartner()" [searchable]="false"></ng-select>
+                            <div *ngIf="clientdetail.tenantId == null  && tenantError" class="color-error fs-12">
+                                {{'tags.message.required.field' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.email' | translate}} 
+                        <span style="color: red"> *</span>
+                    </label>
+                        <div class="col-sm-5">
+                            <input [(ngModel)]="clientdetail.email" required type="text" [pattern]="emailFormat" formControlName="email" class="form-control" [maxlength]="inputMaxName">
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="color-error fs-12">
+                                <div *ngIf="email.errors.required">
+                                    {{'tags.message.required.field' | translate}}
+                                </div>
+                            </div>
+                            <div *ngIf="clientdetail.email && clientdetail.email.length > 100" class="color-error fs-12">
+                                {{'tags.message.length' | translate}}
+                            </div>
+                            <div *ngIf="email.errors?.pattern" class="color-error fs-12">
+                                {{'tags.message.invalid.email' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.phone' | translate}}
+                      
+                    </label>
+                        <div class="col-sm-5">
+                            <input [(ngModel)]="clientdetail.phone" type="text" formControlName="phone" class="form-control" [pattern]="numberPhone" [maxlength]="inputMaxName">
+
+                            <div *ngIf="clientdetail.phone && clientdetail.phone.length == 16" class="color-error fs-12"> 
+                                    {{'tags.message.invalid.phone.length' | translate}}
+                            </div>
+                            <div *ngIf="phone.errors?.pattern" class="color-error fs-12">
+                                    {{'tags.message.invalid.phone' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.country' | translate}} </label>
+                        <div class="col-sm-5">
+                            <ng-select [items]='country' bindLabel="countryName" bindValue="countryId" [(ngModel)]="clientdetail.countryId" formControlName="countryId" (change)="onChangeCountry($event)"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone-input" class="col-sm-2 col-form-label">{{'tags.clientManagement.province' | translate}} </label>
+                        <div class="col-sm-5">
+                            <ng-select [items]='province' bindLabel="provinceName" bindValue="provinceId" [(ngModel)]="clientdetail.provinceId" formControlName="provinceId"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.address' | translate}}</label>
+                        <div class="col-sm-5">
+                            <input [(ngModel)]="clientdetail.address" formControlName="address" type="text" class="form-control" [maxlength]="inputMaxAddress">
+                            <div *ngIf="clientdetail.address.length == 100" class="color-error fs-12">
+                                {{'tags.message.invalid.address.length' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.enterpriseType' | translate}}</label>
+                        <div class="col-sm-5">
+                            <ng-select [items]='enterprise' bindLabel="enterpriseEngName" bindValue="enterpriseId" [(ngModel)]="clientdetail.enterpriseId" [searchable]="false" formControlName="enterpriseId"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.industryType' | translate}}</label>
+                        <div class="col-sm-5">
+                            <ng-select [items]='industryId' bindLabel="industryEngName" bindValue="industryId" [(ngModel)]="clientdetail.industryId" [searchable]="false" formControlName="enterpriseId"></ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.businessUnitName' | translate}}</label>
+                        <div class="col-sm-5">
+                            <table class="table table-bordered table-striped box-shadow-t">
+                                <thead>
+                                    <tr id="line-table">
+                                        <th>No.</th>
+                                        <th>Business unit name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                    <tr *ngFor="let bu of businessUnits; index as i">
+                                        <td>{{i + 1}}</td>
+                                        <td>{{bu}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{'tags.clientManagement.note' | translate}}</label>
+                        <div class="col-sm-5">
+                            <textarea class="form-control" formControlName="note" [(ngModel)]="clientdetail.note" rows="4" [maxlength]="inputMaxNote + 1"></textarea>
+                            <div *ngIf="clientdetail.note && clientdetail.note.length > 500" class="color-error fs-12">
+                                {{'tags.message.length.note' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="last-body">
+                <div class="form-group row">
+                    <button type="button" class="btn btn-default" (click)="onCancelClick()">{{'tags.cancel' | translate}}</button>
+                    <button type="submit" class="btn btn-default" style="background-color: #6EA7DB; color: white" [disabled]="createClientForm.invalid || clientdetail.publishStatus == '1'" (click)="onSaveClick()">{{'tags.save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>

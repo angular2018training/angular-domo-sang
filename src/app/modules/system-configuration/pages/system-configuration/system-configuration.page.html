@@ -1,0 +1,211 @@
+<div id="title">
+    <span>{{'tags.configuration' | translate}}</span>
+</div>
+<div id="system-configuration">
+    <form [formGroup]="systemConfigForm" (ngSubmit)="onSaveData()">
+        <div class="border box-shadow-t">
+            <p>{{'tags.configuration.data' | translate}}</p>
+            <div class="form-group row">
+                <div class="col-sm-2 col-form-label">
+                    <input type="checkbox" [(ngModel)]="check_box.check_box_retension" formControlName="checkBox">{{'tags.configuration.dataRetention' | translate}}
+                </div>
+
+                <div class="left-columm">
+                    <input type="text" class="form-control" [readonly]="!check_box.check_box_retension" [(ngModel)]="data.dataRetentionValue"
+                        formControlName="data2" required style="width: 150px;">
+                    <div *ngIf="data2.invalid&& (data2.dirty || data2.touched)" class="color-error fs-12">
+                        <div *ngIf="data2.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="systemConfigForm.hasError('pattern',['data2'])" class="color-error fs-12">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="time-unit">
+                    <select class="selectpicker1" [disabled]="!check_box.check_box_retension" [(ngModel)]="data.dataRetentionTimeUnit" formControlName="dataRetentionTimeUnit">
+                        <option>Time Unit</option>
+                        <option value="0">hour</option>
+                        <option value="1">day</option>
+                        <option value="2">week</option>
+                        <option value="3">month</option>
+                        <option value="4">year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-2">
+                    <input type="checkbox" [(ngModel)]="check_box.check_box_backup" formControlName="checkBox2"> {{'tags.configuration.backupDatabaseTask' | translate}}
+                </div>
+
+                <div class="left-columm">
+                    <input type="text" class="form-control" [readonly]="!check_box.check_box_backup" [(ngModel)]="data.backupValue" formControlName="data3"
+                        required style="width: 150px;">
+                    <div *ngIf="data3.invalid&& (data3.dirty || data3.touched)" class="color-error fs-12">
+                        <div *ngIf="data3.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="data3.errors?.range && check_box.check_box_backup == true" class="color-error fs-12">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="time-unit">
+                    <select class="selectpicker2" [disabled]="check_box.check_box_backup == false" [(ngModel)]="data.backupTimeUnit" formControlName="backupTimeUnit">
+                        <option value="2">day</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" style="padding-left:115px">{{'tags.configuration.startTime' | translate}}</label>
+                <div class="left-columm form-inline">
+                    <input type="text" class="form-control" style="padding-right: 0px;" formControlName="hourControl" [(ngModel)]="hour" style="width: 50px;"> :
+                    <input type="text" class="form-control" formControlName="minuteControl" [(ngModel)]="minute" style="width: 50px;">
+                    <div *ngIf="hourControl.errors?.range" class="color-error fs-12">
+                        {{'tags.message.invalid.input' | translate}}
+                    </div>
+                    <div *ngIf="minuteControl.errors?.range" class="color-error fs-12">
+                        {{'tags.message.invalid.input' | translate}}
+                    </div>
+                </div>
+                <div class="col-sm-1" style="padding-top: 10px;">
+                    <a (click)="showDialog()">{{'tags.configuration.showlog' | translate}}</a>
+                </div>
+            </div>
+            <hr class=" box-shadow-t" />
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.conversionInterval' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" [(ngModel)]="data.conversionIntervalValue" formControlName="data4" required>
+                    <div *ngIf="data4.invalid&& (data4.dirty || data4.touched)" class="color-error fs-12">
+                        <div *ngIf="data4.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="systemConfigForm.hasError('pattern',['data4'])" class="color-error fs-12">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-1">
+                    <select class="selectpicker" [(ngModel)]="data.conversionIntervalTimeUnit" formControlName="conversionIntervalTimeUnit">
+                        <option>Time Unit</option>
+                        <option value="0">hour</option>
+                        <option value="1">day</option>
+                        <option value="2">week</option>
+                        <option value="3">month</option>
+                        <option value="4">year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.concurrentProcessNumber' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" [(ngModel)]="data.concurrentProcessNumber" formControlName="data5" required>
+                    <div *ngIf="data5.invalid && (data5.dirty || data5.touched)" class="color-error fs-12">
+                        <div *ngIf="data5.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="systemConfigForm.hasError('pattern',['data5'])" class="color-error fs-12">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border box-shadow-t">
+            <p>{{'tags.configuration.email' | translate}}</p>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.serverMail' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" [(ngModel)]="data.serverMailAddress" formControlName="data6" required>
+                    <div *ngIf="data6.invalid && (data6.dirty || data6.touched)" class="color-error fs-12">
+                        <div *ngIf="data6.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="data.serverMailAddress.length >= 100" class="color-error fs-12">
+                            {{'tags.message.length' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.port' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" [(ngModel)]="data.serverMailPort" formControlName="data7" required>
+                    <div *ngIf="data7.invalid && (data7.dirty || data7.touched)" class="color-error fs-12">
+                        <div *ngIf="data7.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="systemConfigForm.hasError('pattern',['data7'])" class="color-error fs-12">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.encryption' | translate}}</label>
+                <form class="col-sm-4">
+                    <input type="radio" name="gender" [value]="1" [(ngModel)]="data.serverMailEncryption"> None
+                    <input type="radio" name="gender" [value]="2" [(ngModel)]="data.serverMailEncryption" style="margin-left: 50px;"> SSL/TSL
+                    <input type="radio" name="gender" [value]="3" [(ngModel)]="data.serverMailEncryption" style="margin-left: 50px;"> STARTTLS
+                </form>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.username' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" [(ngModel)]="data.serverMailUsername" formControlName="data8" required>
+                    <div *ngIf="data8.invalid && (data8.dirty || data8.touched)" class="color-error fs-12">
+                        <div *ngIf="data8.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="data8.serverMailUsername.length >= 100" class="color-error fs-12">
+                            {{'tags.message.length' | translate}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">{{'tags.configuration.password' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" [(ngModel)]="data.serverMailPassword" formControlName="data9" required>
+                    <div *ngIf="data9.invalid && (data9.dirty || data9.touched)" class="color-error fs-12">
+                        <div *ngIf="data9.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="data9.serverMailUsername.length >= 100" class="color-error fs-12">
+                            {{'tags.message.length' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default" style="background-color: #6EA7DB; color:white" (click)="onTestSetting()">{{'tags.configuration.testAccountSettings' | translate}}...</button>
+            </div>
+        </div>
+        <div id="last-body">
+            <div class="last-body-button">
+                <button type="button" class="btn btn-default" (click)="onCancel()">{{'tags.cancel' | translate}}</button>
+                <button type="submit" class="btn btn-default" [disabled]="systemConfigForm.invalid">{{'tags.save' | translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>

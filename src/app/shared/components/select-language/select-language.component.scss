@@ -1,0 +1,29 @@
+@import '~styles/variables';
+@import '~styles/common';
+:host::ng-deep {
+  mat-form-field {
+    &.mat-form-field-type-mat-select {
+      .mat-form-field-underline {
+        display: none;
+      }
+      .mat-form-field-wrapper {
+        padding: 0;
+      }
+      .mat-form-field-infix {
+        border: 0;
+      }
+    }
+  }
+}
+
+.language-item {
+  img {
+    height: 24px;
+    margin-left: 10px;
+  }
+  span {
+    font-size: 14px;
+    margin-left: 30px;
+    color: $color1;
+  }
+}

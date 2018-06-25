@@ -1,0 +1,57 @@
+<div class="heading-toolbar box-shadow" fxLayout="row" fxLayoutAlign="start center">
+  <div class="title" fxLayout="row" fxLayoutAlign="start">
+    <span>
+      <span class="color-white fs-28">
+        <strong>WorkPlace</strong> solution
+      </span>
+      <!-- <span class="color-white fs-18">SYSTEM</span> -->
+    </span>
+  </div>
+  <div fxFlex fxFill>
+    <app-navigation></app-navigation>
+  </div>
+  <select-language onlyIcon="true"></select-language>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon style="font-size: 25px">person</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" [yPosition]="'below'" [overlapTrigger]="false">
+      <button mat-menu-item (click)="goToDetail()">
+        <div fxLayoutAlign="start center">
+          <mat-icon style="font-size: 25px">account_box</mat-icon>
+          <span class="fs-14">{{'tags.userDetail' | translate}}</span>
+        </div>
+      </button>
+      <button mat-menu-item (click)="signout()">
+        <div fxLayoutAlign="start center">
+          <mat-icon style="font-size: 25px">input</mat-icon>
+          <span class="m-l-10 fs-14">{{'tags.signOut' | translate}}</span>
+        </div>
+      </button>
+    </mat-menu>
+    <!-- <button class="hover-color-2" mat-icon-button (click)="goToDetail()">
+      <mat-icon class="color-white">person</mat-icon>
+    </button>
+    <span class="fs-14 color-white m-x-10">{{user.fullname}}</span>
+    <button class="hover-color-2" mat-icon-button (click)="signout()">
+      <img src="assets/logout.png" />
+    </button> -->
+    <!-- <button class="hover-color-2" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="color-white">person</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [yPosition]="'below'" [overlapTrigger]="false">
+      <button mat-menu-item>
+        <mat-icon>toc</mat-icon>
+        <span class="fs-14">{{'tags.information' | translate}}</span>
+      </button>
+      <button mat-menu-item (click)="signout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span class="fs-14">{{'tags.signOut' | translate}}</span>
+      </button>
+    </mat-menu> -->
+  </div>
+</div>
+<div class="breadcrumb-wrapper box-shadow">
+  <breadcrumb></breadcrumb>
+</div>

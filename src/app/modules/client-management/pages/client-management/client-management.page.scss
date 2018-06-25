@@ -1,0 +1,5 @@
+@import '~styles/variables';
+.user-list-body {
+    height: calc(100% - 100px);
+    overflow-y: auto;
+}

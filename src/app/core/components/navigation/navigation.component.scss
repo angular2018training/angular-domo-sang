@@ -1,0 +1,21 @@
+@import '~styles/variables';
+
+:host::ng-deep {
+  .menu-toolbar {
+    height: $heightMenuTb;
+    // background-color: $color1;
+    padding: 0 20px;
+  }
+  
+  .title-toolbar {
+    margin: 5px 20px 0 20px;
+    height: $heightSubmenuTb;
+    display: flex;
+    align-items: center;
+    // border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+  }
+  .title-toolbar>span {
+    font-size: 22px;
+    color: $color1;
+  }
+}

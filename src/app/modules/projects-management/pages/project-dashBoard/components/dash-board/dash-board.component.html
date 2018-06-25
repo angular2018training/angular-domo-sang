@@ -1,0 +1,71 @@
+<div class="dash-board">
+    <div fxLayout="row">
+        <nav mat-tab-nav-bar class="left-contain">
+            <a mat-tab-link *ngFor="let link of navLinks; let i = index;" [routerLink]="link.path"  [queryParams]="{'projectId': projectId }"routerLinkActive #rla="routerLinkActive" [active]="activeLinkIndex === i" (click)="activeLinkIndex = i" [routerLinkActiveOptions]="{exact: true}">
+        {{link.label | translate}}
+      </a>
+        </nav>
+        <div fxFlex></div>
+        <div fxLayout="column">
+            <div>
+                <b>{{project.name}}</b>
+            </div>
+            <div>
+                <span>{{project.clientName}}</span>
+            </div>
+            <div>
+                From
+                <span>{{project.timeFrom | date:'dd-MM-yyyy'}}</span> To
+                <span>{{project.timeTo | date:'dd-MM-yyyy'}}</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div class="project-name" fxLayout="row" fxLayoutAlign="center center"> -->
+    <!-- <mat-icon class="cursor-pointer" class="btn dropdown-toggle dropdown-toggle-split p-none" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">arrow_drop_down</mat-icon>
+    <div class="dropdown-menu">
+      <ul>
+        <li>
+          <div fxLayout="row">
+            <a class="dropdown-item"></a>
+          </div>
+        </li>
+        <li>
+          <div fxLayout="row">
+            <a class="dropdown-item"></a>
+          </div>
+        </li>
+        <li>
+          <div fxLayout="row">
+            <a class="dropdown-item"></a>
+          </div>
+        </li>
+      </ul>
+    </div> -->
+
+    <button class="project-name" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false" [yPosition]="'below'">
+        <button mat-menu-item (click)="save()">
+      <!-- <mat-icon>dialpad</mat-icon> -->
+      <span>{{'tags.save' | translate}}</span>
+    </button>
+        <button mat-menu-item (click)="export()">
+      <!-- <mat-icon>voicemail</mat-icon> -->
+      <span>{{'tags.projectDashboard.exports' | translate}}</span>
+    </button>
+        <button mat-menu-item (click)="settings()">
+      <!-- <mat-icon>notifications_off</mat-icon> -->
+      <span>{{'tags.projectDashboard.settings' | translate}}</span>
+    </button>
+    </mat-menu>
+    <!-- </div> -->
+
+
+    <div class="tab-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

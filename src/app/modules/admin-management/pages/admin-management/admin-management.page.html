@@ -1,0 +1,51 @@
+<div fxFill fxLayout="column">
+    <div class="page-content m-t-5" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="page-title">{{'tags.userManagement' | translate}}</span>
+            <div fxFlex></div>
+            <div class="search-box m-r-5" fxLayout="row">
+                <input placeholder="{{'tags.search' | translate}}" #search />
+                <mat-icon class="color-1">search</mat-icon>
+            </div>
+            <button mat-button class="common-btn" (click)="createNewProject()">{{'tags.userManagement.createNewUser' | translate}}</button>
+        </div>
+        <div class="overflow-a m-t-5 wrap-table" fxFlex fxLayout="column">
+            <table td-data-table>
+                <thead>
+                    <tr td-data-table-column-row>
+                        <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable" [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric">
+                            {{column.label}}
+                        </th>
+                        <th td-data-table-column [style.width.px]="100"> {{'tags.action.delete' | translate}} </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr td-data-table-row *ngFor="let row of filteredData" class="clickable" (click)="onRowClick(row,$event)">
+                        <td td-data-table-cell *ngFor="let column of columns; let i = index" [numeric]="column.numeric" [ngClass]="{'link-button': i === 0 }">
+                            {{column.format ? column.format(row[column.name]) : row[column.name]}}
+                        </td>
+                        <td td-data-table-cell>
+                            <div fxLayout="row">
+                                <button mat-icon-button (click)="onDeleteClick(row, $event)">
+                  <mat-icon class="color-1" aria-label="Delete">delete</mat-icon>
+                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+            <span hide-xs>Page : </span>
+            <span hide-xs>{{'tags.rowPerPage' | translate}}:</span>
+            <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
+                <mat-option *ngFor="let size of pageSizes" [value]="size">
+                    {{size}}
+
+                </mat-option>
+            </mat-select>
+            <span>{{pagingBar.range}}</span>
+            <span hide-xs>{{'tags.of' | translate}} {{pagingBar.total}}</span>
+        </td-paging-bar>
+    </div>
+</div>

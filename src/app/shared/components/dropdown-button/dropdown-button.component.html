@@ -1,0 +1,12 @@
+<div class="dropdown-button" [ngClass]="className" [class.cursor-pointer]="!deactive" [class.deactive]="deactive" title="{{text | translate}}"
+    fxLayout="row" fxLayoutAlign="center center" (mouseleave)="openDropDown('hide')" (mouseover)="openDropDown('show')">
+    <i class="notification material-icons" [class.show]="noti">info</i>
+    <span class="icon" *ngIf="icon">
+        <i class="material-icons">{{icon}}</i>
+    </span>
+    <div class="content truncate" (click)="btnClick()">{{text | translate}}</div>
+    <i class="drop material-icons" [class.hidden]="items.length === 0">arrow_drop_down</i>
+    <div class="drop-down" [@dropDownState]='state' *ngIf="items.length !== 0">
+        <span class="truncate" *ngFor="let item of items" [class.selected]="item.selected" title="{{item.text | translate}}" (click)="clickOnItem(item)">{{item.text | translate}}</span>
+    </div>
+</div>

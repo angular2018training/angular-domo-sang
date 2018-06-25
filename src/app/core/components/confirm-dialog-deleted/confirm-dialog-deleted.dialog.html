@@ -1,0 +1,21 @@
+<div fxFill>
+  <div fxFill fxLayout="column">
+    <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+      <span class="page-title" style="text-transform: inherit;">{{data.title}}</span>
+      <div fxFlex></div>
+      <button mat-icon-button mat-dialog-close>
+        <mat-icon aria-label="Close">close</mat-icon>
+      </button>
+    </div>
+    <div class="p-10" style="min-height: 70px">
+      <span style="text-align: center;">{{data.message}}</span>
+    </div>
+    <div class="dialog-footer">
+      <div fxFlex></div>
+      <div class="m-r-10" fxLayoutAlign="start center">
+        <button mat-button [mat-dialog-close]="true" class="common-btn ">Ok</button>
+      </div>
+      
+    </div>
+  </div>
+</div>

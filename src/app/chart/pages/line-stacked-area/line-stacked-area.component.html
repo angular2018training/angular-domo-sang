@@ -1,0 +1,20 @@
+<div>
+    <b class="chart-title">{{title}}</b>
+</div>
+<div id="line-stacked-area-chart"></div>
+<div fxLayout="row" fxLayout="center" class="center">
+  <div class="stacked-area-chart-legend">
+      <div>
+        <span class="legend-line"></span>
+        <span class="legend-text">{{data.avg_peak_utilisation}}%
+          {{legend.avg_peak.text}}
+        </span>
+      </div>
+      <div>
+        <span class="legend-star-symbol">&#x2605;</span>
+        <span class="legend-text">{{data.absolute_peak_utilization}}%
+        {{legend.abs_peak.text}}
+        </span>
+      </div>
+    </div>
+</div>

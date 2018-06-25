@@ -1,0 +1,60 @@
+@import '~styles/variables';
+@import '~styles/common';
+.content {
+    padding: 10px
+}
+
+.page-content {
+    padding-right: 10px;
+}
+
+:host::ng-deep {
+    .mat-tab-nav-bar,
+    .mat-tab-header {
+        border: none;
+        margin-bottom: -1px;
+        padding-bottom: 0px;
+    }
+    .mat-tab-label-container {
+        padding-bottom: 15px;
+    }
+    .mat-tab-labels {
+        width: 400px;
+        box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.2), 2px 4px 10px 0px rgba(0, 0, 0, 0.14), 3px 6px 20px 0px rgba(0, 0, 0, 0.12);
+    }
+    .mat-tab-label {
+        border: solid 1px $borderColorLight;
+        height: 32px;
+        min-width: 200px;
+        background-color: $colorW;
+        opacity: 1;
+        font-size: 14px;
+    }
+    .mat-tab-label-active {
+        background-color: $tabColor !important;
+        color: $colorW;
+        border-bottom: 0;
+        font-weight: normal;
+    }
+    .mat-ink-bar {
+        background-color: $tabColor !important;
+    }
+    .mat-tab-body-wrapper {
+        height: 260px;
+        border: none;
+    }
+    .mat-raised-button.mat-accent {
+        background-color: #ffffff;
+        color: #000000;
+    }
+    .td-data-table-row {
+        height: 30px !important;
+    }
+    table.td-data-table .td-data-table-column-row {
+        height: 32px !important;
+    }
+    button.mat-icon-button.ng-star-inserted {
+        height: auto;
+        line-height: 31px;
+    }
+}

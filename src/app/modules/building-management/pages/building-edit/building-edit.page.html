@@ -1,0 +1,132 @@
+<div>
+  <div>
+    <div class="p-y-5">
+      <span class="building-title fs-20">{{'tags.buildingManagement.editBuilding' | translate}}</span>
+    </div>
+    <form [formGroup]="editBuildingForm" (ngSubmit)="onFormSubmit()">
+      <div fxLayout="column">
+        <div fxLayout="row" class="card">
+          <div class="card-import" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+              <td-file-input *ngIf="!editData.base64 && !avatarDisplay" formControlName="avatar" #avatarInput (select)="selectAvatarEvent($event)"
+                accept=".png, .jpg">
+                <div fxFlex fxLayout="column" fxFlexAlign="center center">
+                  <div style="height:35px">
+                    <mat-icon class="fs-35" style="height: auto; width: auto">add_circle_outline</mat-icon>
+                  </div>
+                  <span class="fs-12">{{'tags.buildingManagement.addImage' | translate}}</span>
+                </div>
+              </td-file-input>
+              <button class="remove-img" mat-icon-button *ngIf="editData.base64 || avatarDisplay" type="button" (click)="cancelAvatarEvent()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+            <div *ngIf="avatarDisplay" fxFill fxLayoutAlign="center center">
+              <img width="100%" height="100%" [src]="avatarDisplay" onmousedown="return false" />
+            </div>
+            <div *ngIf="editData.base64 && !avatarDisplay" fxFill fxLayoutAlign="center center">
+              <img width="100%" height="100%" [src]="editData.base64" onmousedown="return false" />
+            </div>
+          </div>
+          <div fxFlex class="m-l-20 card-content">
+            <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.buildingName' | translate}}
+                <span style="color: red"> *</span>
+              </label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.name" formControlName="name" required type="text" class="form-control" [maxlength]="inputMaxName">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="color-error fs-12">
+                  <div *ngIf="name.errors.required">
+                    {{'tags.message.required.field' | translate}}
+                  </div>
+                </div>
+                <div *ngIf="editData.name.length == 100" class="color-error fs-12">
+                  {{'tags.message.length' | translate}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.address' | translate}}
+                <span style="color: red"> *</span>
+              </label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.address" formControlName="address" type="text" class="form-control" [maxlength]="inputMaxAddress">
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="color-error fs-12">
+                  <div *ngIf="address.errors.required">
+                    {{'tags.message.required.field' | translate}}
+                  </div>
+                </div>
+                <div *ngIf="editData.address.length == 100" class="color-error fs-12">
+                  {{'tags.message.length' | translate}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.timezone' | translate}}
+                <span style="color: red"> *</span>
+              </label>
+              <select fxFlex="70" class="form-control" [(ngModel)]="editData.timezoneId" formControlName="timeZone">
+                <option *ngFor="let item of timezones" [value]="item.id">{{item.displayName}}</option>
+              </select>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.area' | translate}}</label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.area" fxFlex="70" type="text" pattern="\d+" class="form-control" formControlName="area" placeholder="0"
+                  maxlength="9" (keydown)="inputNumber($event)">
+                <div *ngIf="editData.area?.length == 9" class="color-error fs-12">
+                  Area(m2): The maximum length is 9 digits.
+                </div>
+              </div>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.numberOfFloors' | translate}}</label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.numberOfFloors" fxFlex="70" type="text" pattern="\d+" class="form-control" formControlName="numberOfFloors"
+                  placeholder="0" maxlength="3" (keydown)="inputNumber($event)">
+                <div *ngIf="editData.numberOfFloors?.length == 3" class="color-error fs-12">
+                  Number of floors: The maximum length is 3 digits.
+                </div>
+              </div>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.buildingManagement.capacity' | translate}}</label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.capacity" fxFlex="70" type="text" pattern="\d+" class="form-control" formControlName="capacity"
+                  placeholder="0" maxlength="9" (keydown)="inputNumber($event)">
+                <div *ngIf="editData.capacity?.length == 9" class="color-error fs-12">
+                  Capacity (person): The maximum length is 9 digits.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="form-group m-t-10" fxLayout="column" fxFlexAlign="center center">
+            <span class="building-title fs-20">{{'tags.buildingManagement.description' | translate}}</span>
+            <textarea class="form-control description" name="" id="" rows="8" [(ngModel)]="editData.description" formControlName="description"
+              [maxlength]="inputMaxDescription"></textarea>
+          </div>
+          <div fxLayout="row">
+            <label fxFlex="15" for="" class="m-auto">{{'tags.buildingManagement.floorDataInput' | translate}}</label>
+            <div fxLayout="row" fxFlex fxLayoutAlign="start center">
+              <td-file-input formControlName="floor" class="" #fileInput (select)="selectFloorsEvent($event)" accept=".csv, .xlsx, .xls">
+                <mat-icon>folder</mat-icon>
+                <span>{{'tags.browse' | translate}}...</span>
+              </td-file-input>
+              <span class="p-x-10" *ngIf="editData.floors?.name">{{ editData.floors?.name }}</span>
+              <span class="p-x-10" *ngIf="!editData.floors?.name">No file selected</span>
+              <button mat-icon-button *ngIf="editData.floors?.name" (click)="cancelFloorEvent()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" class="m-none p-t-10">
+        <button mat-button class="common-btn m-r-25" (click)="cancel()" type="button">{{'tags.cancel' | translate}}</button>
+        <button mat-button class="common-btn" type="submit" [disabled]="editBuildingForm.invalid">{{'tags.save' | translate}}</button>
+      </div>
+    </form>
+  </div>
+</div>

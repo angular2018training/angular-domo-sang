@@ -1,0 +1,29 @@
+<div class="full-h" fxLayout="column">
+    <div class="page-content m-t-5" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span>
+                <strong>{{'tags.dashboardsManagement.createNewDashboard' | translate}}</strong>
+            </span>
+            <span fxFlex></span>
+        </div>
+        <div class="m-10 dash-create-content">
+            <div fxLayout="column" fxFlex="50">
+                <div>
+                    <div class="form-group" fxLayout="row" fxFlexAlign="center center">
+                        <label fxFlex="30" for="">{{'tags.dashboardsManagement.dashboardName' | translate}}</label>
+                        <input fxFlex="70" required type="text" class="form-control" name="" id="" placeholder="">
+                    </div>
+                    <div class="form-group" fxLayout="row" fxFlexAlign="center center">
+                        <label fxFlex="30" for="">{{'tags.dashboardsManagement.description' | translate}}</label>
+                        <textarea fxFlex="70" class="form-control description" name="" id="" rows="10"></textarea>
+                    </div>
+                </div>
+                <div fxLayout="row" fxFlexAlign="end center">
+                    <div fxFlex></div>
+                    <button mat-button class="common-btn m-r-25">{{'tags.cancel' | translate}}</button>
+                    <button mat-button class="common-btn">{{'tags.save' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+$color1: #262626 !default;
+$color2: #404040 !default;
+$color3: #E0E0E0 !default;
+$color4: #CC0000 !default;
+$color5:rgb(185, 205, 229);
+$color6:rgb(75, 89, 89);
+$colorPopFoot: rgb(198, 210, 224);
+$colorW: #FFF !default;
+$colorB: rgba(0, 0, 0, 0.87) !default;
+$colorSuccess: #55951B !default;
+$colorWarning: #FFC600 !default;
+$colorError: #CC0000 !default;
+$colorDisabled: #706F6F !default;
+$colorHover: rgba(0, 0, 0, 0.12) !default;
+$colorHover2: rgba(255, 255, 255, 0.12) !default;
+$colorSelected: #CC0000 !default;
+$colorMenu: #706F6F !default;
+$colorButton: rgb(96, 162, 206);
+$colorBorder: #706F6F !default;
+$heightHeader: 50px !default;
+$heightFooter: 50px !default;
+$heightMenuTb: 50px !default;
+$heightbreadcrumb: 28px !default;
+$heightSubmenuTb: 28px !default;
+
+/* variables for style */
+
+$borderColorDark: rgba(166, 166, 166, 1);
+$borderColorLight: rgba(166, 166, 166, 0.19);
+// header
+$headBgColor: rgb(96, 162, 206);
+$menuBorderRadius: 15px;
+$menuActiveBgColor: rgba(255, 255, 255, 0.2);
+// breadcrumb
+$breadCrumbBgColor: rgb(255, 255, 255);
+// content
+$panelHeadHeight: 2em;
+$panelHeadBgColorDark: rgb(48, 71, 98);
+$panelHeadBgColorLight: rgb(198, 210, 224);
+$panelBodyBgColor: rgb(240, 244, 250);
+$filterChartBgColor: rgb(166, 176, 199);
+$budgetInformationBgColor: rgb(220, 230, 242);
+
+/* table color */
+$tableHeadColor: rgb(96, 162, 206);
+$tabColor: rgb(96, 162, 206);

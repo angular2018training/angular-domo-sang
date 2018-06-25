@@ -1,0 +1,10 @@
+<mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="selectedTabChange($event)">
+  <mat-tab label="{{'tags.floorManagement.dataFloor' | translate}}">
+    <app-floor-information [floorId]="floorId" *ngIf="selectedIndex == 0"></app-floor-information>
+    <app-locations [floorId]="floorId" *ngIf="selectedIndex == 0"></app-locations>
+    <app-sensor-list [floorId]="floorId" *ngIf="selectedIndex == 0"></app-sensor-list>
+  </mat-tab>
+  <mat-tab label="{{'tags.floorManagement.layoutFloor' | translate}}">
+    <app-floor-layout [floorId]="floorId" *ngIf="selectedIndex == 1"></app-floor-layout>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,65 @@
+@import '~styles/variables';
+@import '~styles/common';
+
+.user-list-body {
+    height: 100% ;
+    overflow-y: auto;
+}
+
+:host::ng-deep {
+    
+    .user-title {
+        color: $tableHeadColor;
+        font-size: 20px;
+    }
+}
+mat-vertical-stepper{
+    margin-top:20px;
+}
+.title{
+    margin-top: 20px;
+    font-size: 20px;
+}
+.tenant-detail{
+    margin: auto;
+}
+
+.tab-group {
+    border: 1px solid #e8e8e8;
+  }
+.tab-group>mat-tab{
+  flex-direction: row;
+}
+  
+.tenant{
+    padding: 16px;
+  }
+
+.btn-next{
+    text-align: center;
+    margin-left: 20%;
+}
+.btn-next>button{
+    background-color: #6EA7DB;
+    color: white;
+}
+
+
+:host::ng-deep {
+  .mat-tab-group {
+    height: calc(100% - 65px);
+    flex: auto;
+  }
+  .mat-tab-body-wrapper {
+    height: calc(100% - 65px);
+    flex: auto;
+  }
+}
+
+.page-content{
+    display: block !important;
+}
+
+
+
+

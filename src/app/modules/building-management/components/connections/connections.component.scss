@@ -1,0 +1,8 @@
+:host::ng-deep {
+    .td-data-table-row {
+        height: 30px !important;
+    }
+    table.td-data-table .td-data-table-column-row {
+        height: 32px !important;
+    }
+}

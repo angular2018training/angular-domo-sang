@@ -1,0 +1,9 @@
+<div class="main-page" fxLayout="column" fxFill>
+  <app-heading class="heading"></app-heading>
+  <!-- <app-navigation></app-navigation> -->
+  <span class="password-expire" *ngIf="passwordReminder === 0 || (passwordReminder && passwordReminder <= 30)">Your password will expire in <b>{{passwordReminder}}</b> days. Click <a href="#/user-detail">here</a> to update it.</span>
+  <div class="main-page-content" fxFlex [ngStyle]="{'height': passwordReminder === 0 || (passwordReminder && passwordReminder <= 30) ? 'calc(100% - 158px)' : 'calc(100% - 128px)', 'top': passwordReminder === 0 || (passwordReminder && passwordReminder <= 30) ? '108px' : '78px'}">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer class="footer"></app-footer>
+</div>

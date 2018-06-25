@@ -1,0 +1,61 @@
+@import '~styles/variables';
+@import '~styles/common';
+.detail {
+    height: 320px;
+    @media screen and (max-height: 720px) {
+        height: 270px;
+    }
+}
+
+.detail-button {
+    margin-bottom: -33px;
+}
+
+.detail-button mat-icon {
+    color: $tableHeadColor !important;
+    font-size: 25px;
+}
+
+.detail-content {
+    overflow: auto;
+}
+
+.detail-image {
+    width: 500px;
+    text-align: center;
+    border: solid 1px $borderColorLight;
+    @media screen and (max-height: 720px) {
+        width: 400px;
+    }
+}
+
+.floor-list-content {
+    border: solid 1px $borderColorLight;
+}
+
+.floor-item {
+    width: 100%;
+    height: calc(100% - 10px);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .24), 0 1px 5px 0 rgba(0, 0, 0, .22);
+    margin: 5px;
+    >.floor {
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+        text-align: center;
+    }
+}
+
+.floor-item:hover {
+    background-color: $colorHover !important;
+}
+
+:host::ng-deep {
+    .mat-figure {
+        padding: 20px !important;
+    }
+    .mat-icon-button {
+        height: auto;
+        line-height: 31px;
+    }
+}

@@ -1,0 +1,61 @@
+@import "~styles/variables";
+
+// $contentHeight: $heightHeader - $heightbreadcrumb - $heightFooter;
+
+:host::ng-deep {
+  .main-page {
+    // background-color: #F6F6F6;
+    min-width: 1024px !important;
+  }
+
+  .main-page-content {
+    height: auto;
+    width: 100%;
+    padding: 0 20px;
+    // height: calc(100% - 44px - 44px - 85px);
+    overflow: auto;
+    position: absolute;
+    // top: $heightHeader + $heightbreadcrumb;
+    // height: calc(100% - $contentHeight);
+    // height: calc(100% - 50px - 28px - 50px);
+
+    padding: 15px;
+    z-index: 0;
+  }
+}
+
+.heading {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.password-expire {
+  top: 78px;
+  position: absolute;
+  padding: 5px 20px 0 20px;
+  width: 100%;
+  text-align: end;
+  height: 30px;
+
+  b {
+    color: red;
+  }
+
+  a {
+    color: blue;
+    text-decoration: underline;
+
+    // &:visited {
+    //   color: 
+    // }
+  }
+}

@@ -1,0 +1,19 @@
+@import '~styles/variables';
+@import '~styles/common';
+.dash-create-content {
+    border: solid 2px $borderColorDark;
+    height: calc(100% - 55px);
+    padding: 50px;
+}
+
+:host::ng-deep {
+    .common-btn {
+        border: none !important;
+    }
+    .cart label {
+        margin: auto;
+    }
+    textarea.description {
+        resize: none;
+    }
+}

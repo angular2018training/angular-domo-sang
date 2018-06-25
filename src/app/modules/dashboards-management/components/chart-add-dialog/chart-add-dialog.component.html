@@ -1,0 +1,48 @@
+<div fxLayout="column" fxFill>
+  <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+    <span class="page-title" style="text-transform: inherit;">{{'tags.dashboardsManagement.addChart' | translate}}</span>
+    <div fxFlex></div>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon aria-label="Close">close</mat-icon>
+    </button>
+  </div>
+  <div class="p-20" style="height: calc(100% - 100px)">
+    <mat-tab-group>
+      <mat-tab *ngFor="let item of businessUnits" label="{{item.label}}">
+        <div class="tab-content" fxLayout="column">
+          <div class="tab-content-body">
+            <div class="m-t-5 dialog-body-content" fxFlex fxLayout="column" fxLayoutAlign="center">
+              <mat-grid-list class="layout-container" cols="2" rowHeight="200px">
+                <mat-grid-tile *ngFor="let layout of layouts" colspan="1" rowspan="1">
+                  <div fxLayout="column" class="layout-item cursor-pointer">
+                    <div fxLayout="row" fxFlex>
+                      <div fxFlex="50" class="p-10">
+                        <img class="full-w full-h" src="{{layout.src}}" alt="{{layout.label}}">
+                      </div>
+                      <div fxFlex="50" class="p-10">
+                        <p>Good tools make application development quicker and easier to maintain than if you did everything
+                          by hand.</p>
+                      </div>
+                    </div>
+                    <div class="p-10">
+                      <button mat-button class="common-btn">{{'tags.add' | translate}}</button>
+                    </div>
+                  </div>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+  <div class="dialog-footer">
+    <div fxFlex></div>
+    <div fxLayoutAlign="start center">
+      <div>
+        <button mat-button [mat-dialog-close]="true" class="common-btn">{{'tags.done' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

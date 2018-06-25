@@ -1,0 +1,18 @@
+<div *ngIf="data">
+    <h1>Average Utilization of assigned seats</h1>
+    <div>
+        <h2>All assigned seats ({{data.totalAssignedSeat}})</h2>
+        <stacked-bar style="float:left" [id]="stackedBar.chartId" [data]="stackedBar.data" [config]="stackedBar.config"> </stacked-bar>
+        <div *ngIf="showDescription" style="float: left; text-align:justify">
+            Number of Staff with Assigned Workpoints who have the Ability to Adopt Agile Working:
+            <ul>
+                <li>{{data.rateOfAnchoredSeat}}% Anchored Seats</li>
+                <li>{{data.rateOfSemiMobileSeat}}% Semi Mobile Seats</li>
+                <li>{{data.rateOfMobileSeat}}% Mobile Seats</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div *ngIf="!data">
+    <h1>No result found</h1>
+</div>

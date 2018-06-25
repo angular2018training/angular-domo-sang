@@ -1,0 +1,40 @@
+<div fxFill fxLayout="column">
+    <div class="page-content m-t-5" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <span class="page-title">{{'tags.userList' | translate}}</span>
+            <div fxFlex></div>
+            <app-import url=""></app-import>
+            <app-export url=""></app-export>
+        </div>
+        <div class="overflow-a m-t-5 wrap-table" fxFlex fxLayout="column">
+            <table td-data-table>
+                <thead>
+                    <tr td-data-table-column-row>
+                        <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable" [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric">
+                            {{column.label}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr td-data-table-row *ngFor="let row of filteredData" class="clickable" (click)="onRowClick(row)">
+                        <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+                            <span *ngIf="column.name === 'groupAuth'" (click)="onGroupClick(row)" class="link-button" flex>{{row[column.name]}}</span>
+                            <span *ngIf="column.name !== 'groupAuth'" flex>{{column.format ? column.format(row[column.name]) : row[column.name]}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+            <span hide-xs>Page : </span>
+            <span hide-xs>{{'tags.rowPerPage' | translate}}:</span>
+            <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
+                <mat-option *ngFor="let size of pageSizes" [value]="size">
+                    {{size}}
+                </mat-option>
+            </mat-select>
+            <span>{{pagingBar.range}}</span>
+            <span hide-xs>{{'tags.of' | translate}} {{pagingBar.total}}</span>
+        </td-paging-bar>
+    </div>
+</div>

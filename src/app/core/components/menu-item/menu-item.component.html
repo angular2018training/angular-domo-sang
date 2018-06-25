@@ -1,0 +1,11 @@
+<div class="">
+  <button class="menu-button" [ngClass]="{'active': active, 'toggle': item.type === 'toggle'}" mat-button (mouseover)="hoverMenu()" (mouseleave)="leaveMenu()" (click)="showState()" [disabled]="item.disabled">
+    {{item.label}}
+  </button>
+  <div class="menu-container box-shadow" [ngStyle]="{'min-width.px': minWidth}" [@myAwesomeAnimation]='state' (mouseover)="hoverSubmenu()" (mouseleave)="leaveSubmenu()">
+    <div class="divider-h" *ngFor="let submenu of item.pages">
+      <button class="full-w" *ngIf="submenu.url" mat-button [routerLink]="submenu.url" routerLinkActive="active">{{submenu.label}}</button>
+      <button class="full-w" *ngIf="!submenu.url" mat-button >{{submenu.label}}</button>
+    </div>
+  </div>
+</div>

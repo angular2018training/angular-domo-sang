@@ -1,0 +1,27 @@
+<div fxFill>
+  <div class="import-dialog" fxFill fxLayout="column">
+    <div>
+      <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+        <span class="page-title">{{title}}</span>
+        <div fxFlex></div>
+        <button *ngIf="onCloseHandler.observers.length" mat-icon-button (click)="closeDialog()">
+          <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+        <button *ngIf="!onCloseHandler.observers.length" mat-icon-button mat-dialog-close>
+          <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="content-dialog">
+      <ng-content></ng-content>
+    </div>
+    <div>
+      <div *ngIf="!hideFooter" class="dialog-footer">
+        <div fxFlex></div>
+        <div *ngFor="let action of actions" class="action-item" fxLayoutAlign="start center">
+          <button mat-button class="common-btn" (click)="action.onClick()" [disabled]="action.disabled">{{action.label | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

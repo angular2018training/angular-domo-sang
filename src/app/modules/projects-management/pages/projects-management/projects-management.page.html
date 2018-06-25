@@ -1,0 +1,72 @@
+<div fxFill fxLayout="column">
+    <div class="page-content m-t-5" fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <!-- <span class="page-title">{{'tags.projectsManagement.projectList' | translate}}</span> -->
+            <div fxFlex></div>
+            <div class="search-box m-r-5" fxLayout="row">
+                <input placeholder="{{'tags.search' | translate}}" #search />
+                <mat-icon class="color-1">search</mat-icon>
+            </div>
+            <button mat-button class="common-btn" (click)="createNewProject()">{{'tags.projectsManagement.create' | translate}}</button>
+        </div>
+        <div class="overflow-a m-t-5 wrap-table" fxFlex fxLayout="column">
+            <table td-data-table>
+                <thead>
+                    <tr td-data-table-column-row>
+                        <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable"
+                            [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric">
+                            {{column.label}}
+                        </th>
+                        <th td-data-table-column> {{'tags.projectsManagement.targetPeriod' | translate}} </th>
+                        <th td-data-table-column> {{'tags.projectsManagement.createdDate' | translate}} </th>
+                        <th td-data-table-column> {{'tags.projectsManagement.createdBy' | translate}} </th>
+                        <th td-data-table-column [style.width.px]="100"> {{'tags.action.delete' | translate}} </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr td-data-table-row *ngFor="let row of filteredData; let j = index" class="clickable" (click)="viewDetailProject(row.id)"
+                        [ngClass]="{'bg-gray': j % 2 !== 0}">
+                        <td td-data-table-cell *ngFor="let column of columns; let i = index" [numeric]="column.numeric">
+                            {{column.format ? column.format(row[column.name]) : row[column.name]}}
+                        </td>
+                        <td td-data-table-cell>
+                            {{row.timeFrom | datex:'DD MMM YYYY'}} - {{row.timeTo | datex:'DD MMM YYYY'}}
+                        </td>
+                        <td td-data-table-cell>
+                            {{row.createdDate | datex:'DD MMM YYYY'}}
+                        </td>
+                        <td td-data-table-cell>
+                            {{row.createdBy}}
+                        </td>
+                        <td td-data-table-cell>
+                            <div fxLayout="row">
+                                <button mat-icon-button (click)="onDeleteClick(row, $event)">
+                                    <mat-icon class="color-1" aria-label="Delete">delete</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="filteredData.length == 0" class="project-list-body" fxLayout="row" fxLayoutAlign="center center">
+            <span class="project-title">{{'tags.message.notFound' | translate}}</span>
+        </div>
+        <td-paging-bar #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+            <span hide-xs>Page :</span>
+                <mat-select [style.width.px]="50" [(ngModel)]= "currentPage" [formControl]="fromCurrentPage" (change)= "navigateToPage(fromCurrentPage.value)">
+                    <mat-option *ngFor="let size of listPage" [value]="size">
+                        {{size}}
+                    </mat-option>
+                </mat-select>
+            <span hide-xs>{{'tags.rowPerPage' | translate}}</span>
+            <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
+                <mat-option *ngFor="let size of pageSizes" [value]="size">
+                    {{size}}
+                </mat-option>
+            </mat-select>
+            <span>{{currentPage}}</span>
+            <span hide-xs>{{'tags.of' | translate}} {{totalPage}}</span>
+        </td-paging-bar>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div id="header_body">
+    <p style="font-size: 20px; color: #3D8EC0;">{{'tags.projectsManagement.information' | translate}}</p>
+</div>
+<form [formGroup]="createProjectForm">
+    <div id="body">
+        <div id="first-body">
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">{{'tags.projectsManagement.projectName' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" [(ngModel)]="fieldCreateProject.name" formControlName="name" required [pattern]="projectName">
+                    <div *ngIf="name.invalid&& (name.dirty || name.touched)" class="color-error fs-12">
+                        <div *ngIf="name.errors.required">
+                            {{'tags.message.required.field' | translate}}
+                        </div>
+                        <div *ngIf="name.errors?.pattern">
+                            {{'tags.message.invalid.input' | translate}}
+                        </div>
+                    </div>
+                    <div *ngIf="fieldCreateProject.name.length >= 100" class="color-error fs-12">
+                        {{'tags.message.length' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">{{'tags.projectsManagement.targetClient' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-5">
+                    <ng-select [items]='clients' bindLabel="name" bindValue="id" [(ngModel)]="fieldCreateProject.client" formControlName="clients" (change)="onChangeClient()" required (open)="clientError = true"></ng-select>
+                    <div *ngIf="clientError && fieldCreateProject.client == null" class="color-error fs-12">
+                        {{'tags.message.required.field' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">{{'tags.projectsManagement.targetBuilding' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <div class="col-sm-5">
+                    <ng-select [items]='buildings'  bindLabel="name" bindValue="id" [(ngModel)]="fieldCreateProject.building" formControlName="buildings" (change)="onChangeBuilding()" required (open)="buildingError = true"></ng-select>
+                    <div *ngIf="buildingError && fieldCreateProject.building == null" class="color-error fs-12">
+                        {{'tags.message.required.field' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">{{'tags.projectsManagement.targetFloor' | translate}}
+                </label>
+                <div class="col-sm-5">
+                    <ng-select [items]='floors'  bindLabel="name" bindValue="id" [(ngModel)]="fieldCreateProject.floor" formControlName="floors"></ng-select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label">{{'tags.projectsManagement.timeRange' | translate}}
+                    <span style="color: red"> *</span>
+                </label>
+                <!-- <div class="col-sm-5">
+                    <input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)"
+                        formControlName="dateRangePicker" />
+                    <div *ngIf="dateRangePicker.invalid && (dateRangePicker.dirty || dateRangePicker.touched)" class="color-error fs-12">
+                        <div *ngIf="dateRangePicker.errors.required">
+                            Please choose your time range.
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-sm-5" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" (click)="isDateRange = true">
+                    <span class="form-control uneditable-input" name="daterange">
+                        {{ fieldCreateProject.timeFrom | datex:'YYYY MMM DD' }} - {{ fieldCreateProject.timeTo| datex:'YYYY MMM DD' }}
+                    </span>
+                    <input type="hidden" [(ngModel)]="fieldCreateProject.timeFrom" required formControlName="timeFrom" />
+                    <input type="hidden" [(ngModel)]="fieldCreateProject.timeTo" formControlName="timeTo" />
+                    <div *ngIf="isDateRange" class="color-error fs-12">
+                        {{'messages.message36' | translate}}
+                    </div>
+                </div>
+            </div>
+
+            <div id="last-body">
+                <div class="form-group row">
+                    <button type="button" class="btn btn-default" (click)="cancelDialog()">{{'tags.cancel' | translate}}</button>
+                    <button type="submit" class="btn btn-default" (click)="onSaveProject()" style="background-color:#6EA7DB; color: white" [disabled]="createProjectForm.invalid">{{'tags.projectsManagement.saveAndProcess' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

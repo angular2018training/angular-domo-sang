@@ -1,0 +1,31 @@
+.min-h {
+    min-height: 250px;
+}
+
+.legend {
+    // position: absolute;
+    top: 0;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 15px;
+    
+    .icon {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+
+    span {
+        margin-right: 10px;
+    }
+}
+
+.position-relative {
+    position: relative;
+}
+
+/* Chart style */
+.tooltip-chart {
+    width: 70px;
+}
+/* End chart */

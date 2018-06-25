@@ -1,0 +1,41 @@
+<div class="building-management">
+    <div class="publish-client" fxLayout="row" fxLayoutAlign="center center">
+        <!-- <button type="button" > -->
+        <mat-icon class="cursor-pointer" class="btn dropdown-toggle dropdown-toggle-split p-none" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">menu</mat-icon>
+        <!-- </button> -->
+        <div class="dropdown-menu">
+            <ul>
+                <li>
+                    <div fxLayout="row">
+                        <a class="dropdown-item" (click)="publishBuilding(clientDetail.publishStatus)">
+                            <span *ngIf="clientDetail.publishStatus !== 1">{{'tags.clientManagement.publish' | translate}}</span>
+                            <span *ngIf="clientDetail.publishStatus == 1">{{'tags.clientManagement.unpublish' | translate}}</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div fxLayout="row">
+                        <a class="dropdown-item" (click)="showClientDetail()">{{'tags.clientManagement.clientDetail' | translate}}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="client-detail">
+        <div class="fs-18 truncate">{{'tags.buildingManagement.partner' | translate}}: {{clientDetail.tenantName}}</div>
+        <p class="truncate">{{'tags.buildingManagement.client' | translate}}: {{clientDetail.name}}</p>
+        <p *ngIf="clientDetail.publishStatus == 0">{{'tags.buildingManagement.status' | translate}}: Unpublished</p>
+        <p *ngIf="clientDetail.publishStatus == 1">{{'tags.buildingManagement.status' | translate}}: Published</p>
+        <p *ngIf="clientDetail.publishStatus !=0 && clientDetail.publishStatus !=1">{{'tags.buildingManagement.status' | translate}}:Not Published</p>
+        <p *ngIf="clientDetail.publishDate">{{'tags.buildingManagement.lastPublishOn' | translate}}: {{clientDetail.publishDate | datex:'YYYY-MM-DD HH:mm'}}</p>
+        <p *ngIf="!clientDetail.publishDate">{{'tags.buildingManagement.lastPublishOn' | translate}}: N/A</p>
+    </div>
+    <nav mat-tab-nav-bar>
+        <a mat-tab-link *ngFor="let link of navLinks; let i = index;" [active]="activeLinkIndex === i" (click)="changeTab(link.url, i)">
+      {{link.label}}
+    </a>
+    </nav>
+    <div class="tab-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+@import '~styles/variables';
+@import '~styles/common';
+.building-management {
+    height: calc(100% - 41px);
+    padding: 20px;
+    position: relative;
+}
+
+.tab-content {
+    height: 100%;
+    overflow: auto;
+}
+
+.publish-client {
+    position: fixed;
+    right: 35px;
+    top: 51px;
+    padding-right: 1px;
+    & p {
+        font-size: 12px;
+        margin: 0;
+    }
+    & ul {
+        list-style-type: none;
+        -webkit-padding-start: 20px;
+        margin: 0;
+        & li a {
+            width: 90%;
+            height: 90%;
+            text-decoration: none !important;
+            color: $colorB;
+            padding-left: 10px;
+            &:hover {
+                cursor: pointer;
+                text-decoration: none !important;
+                background-color: $tabColor !important;
+                color: $colorW;
+                border-radius: 2px;
+            }
+        }
+    }
+    & .dropdown-menu {
+        right: 0 !important;
+        left: initial;
+        min-width: 210px;
+    }
+    &:hover {
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    }
+}
+
+.client-detail {
+    position: absolute;
+    right: 35px;
+    top: 3px;
+    max-width: 300px;
+    & p {
+        font-size: 12px;
+        margin: 0;
+        display: block;
+    }
+}
+
+:host::ng-deep {
+    .mat-tab-nav-bar,
+    .mat-tab-header {
+        border: none;
+        padding-bottom: 20px;
+    }
+    .mat-tab-links {
+        width: 25%;
+        min-width: 250px;
+        box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.2), 2px 4px 10px 0px rgba(0, 0, 0, 0.14), 3px 6px 20px 0px rgba(0, 0, 0, 0.12);
+    }
+    .mat-tab-link {
+        border: solid 1px $borderColorLight;
+        height: 40px;
+        min-width: 50%;
+        background-color: $colorW;
+        opacity: 1;
+        text-decoration: none;
+    }
+    .mat-tab-label-active {
+        background-color: $tabColor !important;
+        color: $colorW;
+    }
+    .mat-ink-bar {
+        background-color: $tabColor !important;
+    }
+}

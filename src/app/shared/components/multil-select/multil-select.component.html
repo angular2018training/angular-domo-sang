@@ -1,0 +1,18 @@
+<form #form="ngForm">
+  <mat-form-field class="multi-select " fxFlex floatPlaceholder="always">
+    <mat-select (onClose)="closePopup()" placeholder="{{tagName | translate}}" [(ngModel)]="selectedObjectModel" name="selectedObject" multiple>
+      <mat-form-field class="m-l-15 search-input-custom full-w" floatPlaceholder="never">
+        <input (keyup)="searchDataByName(search)" [(ngModel)]="search" name="search" matInput placeholder="{{'tags.find' | translate}}">
+        <mat-icon>search</mat-icon>
+      </mat-form-field>
+      <div class="mat-select-content-custom">
+        <label class="mat-optgroup-label">{{'tags.repairHistory.selectedItem' | translate}}</label>
+        <mat-checkbox  style="display: block;" (change)="reCheckItem(i)" class="mat-checkbox-custom p-l-15" [checked]="true" *ngFor="let item of selectedObject; let i = index">
+          {{item.name}}
+        </mat-checkbox>
+        <label class="mat-optgroup-label">{{'tags.repairHistory.listItem' | translate}}</label>
+        <mat-option (click)="clickItem(item)" *ngFor="let item of listDataObject" [value]="item">{{item.name}}</mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+</form>

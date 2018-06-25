@@ -1,0 +1,21 @@
+<common-dialog [title]="data.title | translate" [actions]="actions">
+  <div class="content-wrapper">
+    <!-- <div> -->
+    <div fxFlex>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input [disabled]="true" placeholder="{{'tags.sourceFile' | translate}}" matInput value="{{fileName}}">
+      </mat-form-field>
+    </div>
+    <div class="m-l-10" fxLayoutAlign="center">
+      <td-file-upload fxLayoutAlign="center center" accept=".png, .jpg" #fileUpload defaultColor="accent" activeColor="warn" cancelColor="primary"
+        (select)="selectEvent($event)" (cancel)="cancelEvent()" [disabled]="disabled" multiple>
+        <span class="truncate">{{ fileName }}</span>
+        <ng-template td-file-input-label>
+          <!-- <mat-icon>attach_file</mat-icon> -->
+          <span>{{'tags.browse' | translate}}</span>
+        </ng-template>
+      </td-file-upload>
+    </div>
+    <!-- </div> -->
+  </div>
+</common-dialog>

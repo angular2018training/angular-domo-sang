@@ -1,0 +1,24 @@
+<div>
+  <b class="chart-title">{{title}}</b>
+</div>
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayout="center center" class="chart-container" class="m-b-10" fxLayoutGap="20px">
+  <div fxFlex="60" fxLayout.sm="100" fxLayout.xs="100" fxLayout="row">
+      <div *ngFor="let chart of progressCharts" fxFlex="25">
+          <div fxLayout="column" fxLayoutGap="10px" class="chart">
+            <progress-chart fxLayout="column" [id]="chart.above.chartId + '1'" [data]="chart.above.data" [config]="chart.above.config"></progress-chart>
+            <progress-chart fxLayout="column" [id]="chart.below.chartId + '2'" [data]="chart.below.data" [config]="chart.below.config"></progress-chart>
+          </div>
+        </div>
+  </div>
+  <div fxLayout="column" fxFlex="38" class="description">
+      <span *ngFor="let data of meetingRoomRateList">
+        <b>{{data.occupyRate}} % </b>of the time {{data.meetingRoomType}} Meeting Rooms were occupied.
+      </span>
+      <span *ngFor="let data of meetingRoomRateList">
+          <b>{{data.optimalRate}} %</b> of the time {{data.meetingRoomType}} Meeting Rooms were optimally used.
+        </span>
+  </div>
+</div>
+<div *ngIf="!progressCharts || progressCharts.length === 0" fxLayout="row" fxLayoutAlign="center center">
+  <b class="no-data">No Data</b>
+</div>

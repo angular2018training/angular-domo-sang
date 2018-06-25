@@ -1,0 +1,45 @@
+<common-dialog [title]="'tags.clientDetail.createClientAdministration' | translate" [actions]="actions">
+  <form>
+    <fieldset>
+      <legend> {{"tags.administratorManagement.generalInfo" | translate}} </legend>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input required matInput placeholder="{{'tags.administratorManagement.fullName' | translate}}" [(ngModel)]="adminModel.fullname"
+          [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input required matInput placeholder="{{'tags.administratorManagement.email' | translate}}" [(ngModel)]="adminModel.email"
+          [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <mat-select placeholder="{{'tags.administratorManagement.role' | translate}}" [(ngModel)]="adminModel.role" [ngModelOptions]="{standalone: true}">
+          <mat-option value="Client Admin">{{'tags.clientAdmin' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div fxLayout="column" class="radio-custom">
+        <span class="title-radio m-b-5">{{'tags.administratorManagement.status' | translate}}</span>
+        <mat-radio-group [(ngModel)]="adminModel.status" [ngModelOptions]="{standalone: true}">
+          <mat-radio-button value="Active" selected>{{'tags.administratorManagement.active' | translate}}</mat-radio-button>
+          <mat-radio-button style="margin-left: 115px;" value="Inactive">{{'tags.administratorManagement.inactive' | translate}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </fieldset>
+  </form>
+  <fieldset>
+    <legend>{{'tags.administratorManagement.loginDetail' | translate}}</legend>
+    <form>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input matInput placeholder="{{'tags.administratorManagement.userId' | translate}}" [(ngModel)]="adminModel.userId" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input matInput required type="password" placeholder="{{'tags.administratorManagement.newPassword' | translate}}" [(ngModel)]="adminModel.newPassword"
+          [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field class="full-w" floatPlaceholder="always">
+        <input matInput required type="password" placeholder="{{'tags.administratorManagement.confirmNewPassword' | translate}}"
+          [(ngModel)]="adminModel.confirmNewPassword" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+    </form>
+  </fieldset>
+</common-dialog>

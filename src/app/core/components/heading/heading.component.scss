@@ -1,0 +1,28 @@
+@import '~styles/variables';
+
+
+.search-box {
+  background-color: $colorW;
+  border: 1px $color1 solid;
+  border-radius: 15px;
+  width: 200px;
+  padding: 0 10px;
+  align-items: center;
+}
+.search-box>input {
+  border: none !important;
+  font-size: 16px;
+  outline: none;
+  width: 100%;
+}
+.search-box>mat-icon {
+  color: $color1;
+  cursor: pointer;
+}
+
+.breadcrumb-wrapper {
+  height: $heightbreadcrumb;
+}
+:host::ng-deep {
+ 
+}

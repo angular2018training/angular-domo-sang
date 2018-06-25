@@ -1,0 +1,48 @@
+<div id="slide" class="ws-slide ws-input full-wh" fxLayout="column">
+    <!-- <form  [formGroup]="slideForm" fxFlex fxLayout="column"> formControlName="name" -->
+    <div droppable [dropScope]="'deleteChart'" class="slide-title margin t5" fxLayout="row" fxLayoutAlign="center center" (onDrop)="deleteTab(selectedTabIndex)">
+        <mat-input-container fxLayout="row" *ngIf="!onDragging" class="font-26 " floatPlaceholder="never" fxFlex>
+            <textarea class = "breack-line" fxFlex [disabled]="!isEdit" type="text" class="color-2 " (keydown)="changeSlideTitle($event)" matInput placeholder="Slide Title"
+                [(ngModel)]="slide.name" value="{{slide.name}}" [maxlength]="maxTitle"></textarea>
+            <button mat-icon-button (click)="edit(isEdit)" *ngIf= "!isEdit">
+                <mat-icon class="material-icons" matTooltip="Edit Title">edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="edit(isEdit)" *ngIf= "isEdit">
+                <mat-icon class="material-icons" matTooltip="Save">done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="cancel(isEdit)" *ngIf= "isEdit">
+                <mat-icon class="material-icons" matTooltip="Cancel">clear</mat-icon>
+            </button>
+            <!-- <label>{{slide.name}}</label> -->
+        </mat-input-container>
+        <!-- <span fxFlex></span> -->
+
+        <div fxFlex *ngIf="onDragging" fxLayoutAlign="center center">
+            <mat-icon class="ws-icon-48 color-3">delete</mat-icon>
+        </div>
+    </div>
+
+    <div class="slide-content" fxFlex>
+        <div *ngFor="let tab of [1,2,3,4], let i = index" id="tab-{{i}}" class="slide-content-item" droppable (onDrop)="onDropHandle($event)"
+            [dropScope]="'addChart'" dragClass="on-drag-border" draggable [dragData]="i" [dragScope]="['addChart', 'deleteChart']"
+            [dragEnabled]="enableDrag(i)" (onDragStart)="onDragStart(i)" (onDragEnd)="onDragEnd(i)" [dragImage]="dragImage(i)">
+            <div fxFlex>
+                <div class="full-wh" *ngIf="slide.tabs[i]" fxLayout="column">
+                    <div fxFlex fxLayout="column">
+                        <mat-input-container class="no-padding font-18 " floatPlaceholder="never">
+                            <input (keydown)="changeSlideTitle($event)" class="color-2" matInput placeholder="Chart Title" [(ngModel)]="slide.tabs[i].name">
+                        </mat-input-container>
+                        <div *ngIf="slide.tabs[i].type !== 'text-editor'" class="margin t5 overflow-h" fxFlex>
+                            <img class="no-drag-image full-wh" src="assets/{{slide.tabs[i].image}}" />
+                        </div>
+                        <!-- <div class="ws-editor" *ngIf="slide.tabs[i].type === 'text-editor'"></div>   -->
+                        <quill-editor id="editor-{{i}}" *ngIf="slide.tabs[i].type === 'text-editor'" class="ws-editor" [modules]="quillOption" [(ngModel)]="slide.tabs[i].textContent"
+                            (onSelectionChanged)="onSelectionChanged($event)">
+                        </quill-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </form> -->
+</div>

@@ -1,0 +1,50 @@
+@import '~styles/variables';
+@import '~styles/common';
+app-floor-layout{
+    display: block;
+    height: 100%;
+}
+:host::ng-deep {
+    .mat-tab-group {
+        height: 100%;
+    }
+    .mat-tab-nav-bar,
+    .mat-tab-header {
+        border: none;
+        margin-bottom: -1px;
+        padding-bottom: 0;
+    }
+    .mat-tab-label {
+        border: solid 1px $borderColorLight;
+        height: 40px;
+        min-width: 100px;
+        font-size: 16px;
+        opacity: 1;
+    }
+    .mat-tab-label:first-child {
+        border-right: none;
+    }
+    .mat-tab-label-active {
+        box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.2), 2px 4px 10px 0px rgba(0, 0, 0, 0.14), 3px 6px 20px 0px rgba(0, 0, 0, 0.12);        
+        background-color: $colorW !important;
+        color: $tabColor;
+        border-bottom: 0;
+        font-weight: 700;
+    }
+    .mat-ink-bar {
+        background-color: $colorW !important;
+        display: none;
+    }
+    .mat-tab-body-wrapper {
+        height: 100%;
+        border: solid 1px $borderColorLight;        
+    }
+    .mat-tab-body-content {
+        overflow: auto;
+    }
+    .title{
+        height: 30px;
+        background-color: $tableHeadColor;
+        color: $colorW; 
+    }
+}

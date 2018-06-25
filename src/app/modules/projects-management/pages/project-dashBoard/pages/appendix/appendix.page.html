@@ -1,0 +1,107 @@
+<div class="full-wh" fxLayout="column">
+    <div fxFlex fxLayout="row" class="">
+        <div class="key-findings-slides-review" dnd-sortable-container [sortableData]="slides">
+            <div id="{{'slide-' + slide.id}}" class="slide-review-item" *ngFor="let slide of slides; let i = index"fxLayout="column">
+                <span class="font-12 color-3">{{ i + 1}}</span>
+                <div fxFlex class="slide-review-content hover-opacity-1 box-shadow background-color-2 color-3 overflow-h"
+                 [ngClass]="{'active': slide.isActive }" dnd-sortable 
+                  [dragEnabled]="true" [dragData]="slide" (click)="selectSlide(slide)">
+                    <div *ngIf="slide.isActive" [contextMenu]="basicMenu" [contextMenuSubject]="item" class="right-click" > Right Click</div>
+                    <context-menu>
+                        <ng-template contextMenuItem>
+                            <div (click)="duplicate()">Duplicate Slide</div>
+                        </ng-template>
+                        <ng-template contextMenuItem>
+                                <div (click)="deleteMultipleSlide()">Delete Slide</div>
+                        </ng-template>
+                    </context-menu>
+                    <div id="slide_side_{{slide.slideStyle}}_{{slide.id}}" class="sub-slide"></div>
+
+                </div>
+            </div>
+            <!-- add new slide  -->
+            <div class="slide-review-item padding t15">
+                <button fxFlex class="background-color-3 box-shadow hover-color-2 full-size" mat-button matTooltip="New slide" (click)="addSlide()" [disabled]="slides.length == maxSlide">
+          <mat-icon class="color-1 ws-icon-36" >add</mat-icon>
+                </button>
+
+            </div>
+        </div>
+        <div fxFlex class="key-findings-slides-content project-dash-board padding t10 b10">
+            <div fxFlex>
+                <div fxFlex></div>
+                <span class="margin  color-index"> <b>Slide {{getSelectedSlideIndex() + 1}}/{{slides.length}} </b></span>
+            </div>
+            <div class="slide-item">
+                <div id="slide_1" *ngIf="selectedSlide.slideStyle === 1" class="main-body config">
+                        <!-- <button class="ws-icon-button margin edit-icon" matTooltip="Edit Title" type="button" (click)="changeTitle()" >
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button> -->
+                            
+                    <slide *ngIf="selectedSlide" [slide]="selectedSlide" (update)="changeSlide()"></slide>
+                </div>
+                <div id="slide_2" *ngIf="selectedSlide.slideStyle === 2" class="main-body">
+
+                    <textarea [(ngModel)]="titleContent" (keyup)="changeSlide()" class="main-top">{{titleContent}}</textarea>
+                </div>
+                <div id="slide_3" *ngIf="selectedSlide.slideStyle === 3" class="main-body">
+                    <textarea [(ngModel)]="subTitleContent" (keyup)="changeSlide()" class="main-top">{{subTitleContent}}</textarea>
+                </div>
+
+            </div>
+            <div fxFlex>
+                <button class="ws-icon-button margin delete-icon" matTooltip="Delete slide" type="button" (click)="deleteMultipleSlide()" [disabled]="!selectedSlide">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <div *ngIf="isEdit">
+                    <app-slide-properties [slideStyle]="selectedSlide.slideStyle" (changeSlideTypeEvent)="changeSlideTypeEvent($event)"></app-slide-properties>
+
+                    <!-- [slideStyle]="slideStyle" -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div fxLayout="row" *ngIf="selectedSlide.slideStyle === 1">
+        <nav mat-tab-nav-bar fxFlex>
+            <span class="business-units">Business Units</span>
+        </nav>
+
+        <ul class="nav nav-tabs " fxlayoutalign="end end">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-triangle-bottom"></span>
+                </a>
+                <ul class="dropdown-menu pull-right drop-down-bussiness-unit">
+                    <li>
+                        <a href="#" *ngFor="let item of bussinessUnitLinks;  let i = index;">{{item.label}} </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="key-findings-footer" *ngIf="selectedSlide.slideStyle === 1">
+        <div class="tab-content">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="footer-container">
+            <div class="left-contain">All charts</div>
+            <!--<div class="right-contain">-->
+            <div *ngFor="let chart of charts; let i = index" class="right-contain chart-item">
+                <div class="chart-item-content color-3 hover-opacity-1 box-shadow margin-10" fxFlex fxLayout="column" draggable [dragData]="chart" [dragScope]="'addChart'" dragClass="''">
+                    <span class="font-14" [ngStyle]="{'color': chart.color}">{{chart.name}}</span>
+                    <span class="font-12">{{chart.subTitle}}</span>
+                    <div class="overflow-h" fxFlex>
+                        <img class="no-drag-image full-wh" src="assets/{{chart.image}}" />
+                    </div>
+                </div>
+            </div>
+            <!--</div>-->
+        </div>
+
+    </div>
+
+
+
+</div>

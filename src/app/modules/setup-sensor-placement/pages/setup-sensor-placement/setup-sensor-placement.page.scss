@@ -1,0 +1,110 @@
+@import '~styles/variables';
+@import '~styles/common';
+#setup-sensor-placement {
+    height: calc(100% - 42px);
+    overflow: auto;
+    border: solid 1px $borderColorDark;
+    margin: 20px 10px
+}
+
+.floor-layout {
+    height: 100%;
+    overflow: hidden;
+    &__action {
+        background-color: $tabColor;
+        height: 40px;
+    }
+}
+
+#cy {
+    width: 100%;
+    height: calc(100% - 42px);
+    display: block;
+}
+
+::ng-deep .setPosContextMenu {
+    position: absolute;
+    z-index: 5;
+    border: 1px solid #dadada;
+    font-size: 12px;
+    margin-left: 10px;
+    width: 100px;
+    & button {
+        background-color: #fff;
+        font-size: 18px;
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: none;
+        font-size: 13px;
+        padding: 4px 10px;
+        &:hover {
+            background-color: #21abe2;
+            color: #fff;
+        }
+        &:disabled {
+            cursor: default;
+            background-color: #cccccc;            
+        }
+    }
+}
+
+:host::ng-deep {
+    .mat-raised-button {
+        border-radius: 5px !important;
+        line-height: 29px !important;
+        border: solid .5px $colorB !important;
+        background-color: $colorW;
+        color: $colorB !important;
+        &:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+        &:hover {
+            background-color: #E0E0E0;
+        }
+    }
+    .mat-figure {
+        padding: 5px !important;
+    }
+}
+
+/* sensor list css */
+
+.sensor-list {
+    width: 160px;
+    height: 100%;
+}
+
+.sensor-list-header {
+    background-color: $tabColor;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.sensor-list-body {
+    height: calc(100% - 42px);
+    padding: 10px 5px;
+    border: solid 1px $borderColorLight;
+}
+
+.sensor-list-body-content {
+    height: calc(100% - 54px);
+    overflow: auto;
+}
+
+.sensor-item {
+    width: 100%;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .3), 0 2px 2px 0 rgba(0, 0, 0, .24), 0 1px 5px 0 rgba(0, 0, 0, .22);
+    margin: 5px;
+    >.sensor {
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+    }
+}
+
+.type {
+    color: $tabColor;
+}

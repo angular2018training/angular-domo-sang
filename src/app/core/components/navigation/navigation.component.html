@@ -1,0 +1,15 @@
+<!-- <div class="menu-toolbar box-shadow" fxLayout="row" fxLayoutAlign="start center">
+  <div *ngFor="let item of menu">
+    <menu-item [item]="item" [active]="selectedMenu.id === item.id"></menu-item>
+  </div>
+</div>
+<div class="title-toolbar">
+  <span>{{title}}</span>
+</div>
+<breadcrumb></breadcrumb> -->
+
+<div class="menu-toolbar" fxLayout="row" fxLayoutAlign="start center">
+  <div *ngFor="let item of menu">
+    <menu-item [item]="item" [active]="selectedMenu.id === item.id"></menu-item>
+  </div>
+</div>

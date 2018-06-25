@@ -1,0 +1,56 @@
+<div fxLayout="row" id="setup-sensor-placement" class="box-shadow">
+    <!-- layout -->
+    <div class="floor-layout full-w">
+        <div fxLayout="row" fxLayoutAlign="start center" class="floor-layout__action">
+            <div class="m-l-5">
+                <button mat-button class="custom-btn" (click)="backToFloorLayoutConfirm()">
+          <mat-icon class="mat-18">keyboard_backspace</mat-icon>{{'tags.setupSensorPlacement.backToFloorLayout' | translate}}</button>
+            </div>
+            <div class="m-l-20">
+                <button mat-button class="custom-btn" (click)="onSave()" [disabled]="!data.base64 || data.base64 == ''">{{'tags.save' | translate}}</button>
+            </div>
+            <div class="m-l-20">
+                <td-file-input #fileInput (select)="selectLayoutEvent($event)" accept=".png, .jpg">
+                    <span>{{'tags.setupSensorPlacement.changeLayout' | translate}}</span>
+                </td-file-input>
+            </div>
+            <div class="m-l-20">
+                <button mat-button class="custom-btn" type="button" (click)="cleanAllSensorConfirm()" [disabled]="!data.base64 || data.base64 == ''">{{'tags.setupSensorPlacement.clean' | translate}}</button>
+            </div>
+        </div>
+        <!-- sensor layout -->
+        <div id="cy" dnd-droppable (onDropSuccess)="transferDataSuccess($event)" (window:resize)="onResize($event)"></div>
+    </div>
+    <!-- sensor list -->
+    <div fxLayout="column" class="sensor-list">
+        <div class="sensor-list-header">
+            <span>{{'tags.floorManagement.sensorList' | translate}}</span>
+        </div>
+        <div class="sensor-list-body">
+            <div fxLayout="row" fxLayoutAlign="start center" class="sensor-list-body-action">
+                <div class="search-box m-r-5" fxLayout="row">
+                    <input class="someInputdisplay" placeholder="{{'tags.search' | translate}}" #search />
+                    <mat-icon class="color-1">search</mat-icon>
+                </div>
+            </div>
+            <div class="sensor-list-body-content">
+                <div *ngFor="let sensorType of filteredData">
+                    <span class="p-5 type" *ngIf="sensorType.sensorsList?.length !=0">{{sensorType.sensorType}}</span>
+                    <mat-grid-list cols="2" rowHeight="80px">
+                        <mat-grid-tile *ngFor="let sensor of sensorType.sensorsList" [colspan]="1" [rowspan]="1">
+                            <div fxLayout="column" class="sensor-item cursor-pointer" fxLayoutAlign="center center">
+                                <div class="sensor" dnd-draggable [dragEnabled]="layout || data?.base64" [dragData]="dataTranfer(sensor)">
+                                    <img width="100%" height="100%" src="assets/img/sensor.png" class="img-fluid rounded-top" alt="">
+                                </div>
+                                <span class="fs-10 fw-bold">{{sensor.sensorName}}</span>
+                            </div>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </div>
+                <div class="m-t-10" *ngIf="filteredData.length == 0" fxLayoutAlign="center center">
+                    <span class="type">{{'tags.message.notFound' | translate}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,285 @@
+@import 'variables';
+// sn-scrollbar
+::-webkit-scrollbar {
+  max-width: 3px;
+  max-height: 3px;
+  background-color: $colorW;
+  border: 0.5px solid $colorHover;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: $colorMenu;
+}
+
+// Toggle panel
+mat-expansion-panel {
+  box-shadow: none !important;
+}
+
+mat-expansion-panel-header {
+  padding: 0 16px 0 10px !important;
+  max-height: $heightHeader !important;
+}
+
+mat-expansion-panel-header:hover {
+  background-color: $colorHover !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 0 0 10px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+.my-table {}
+
+tr {
+  outline: none !important;
+}
+
+.td-loading-wrapper .td-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.mat-progress-spinner,
+.mat-progress-spinner svg {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.toast-bottom-right {
+  right: 6px !important;
+  bottom: 0px !important;
+}
+
+.toast-success {
+  background-color: $colorSuccess !important;
+}
+
+.toast-error {
+  background-color: $colorError !important;
+}
+
+.toast-warning {
+  background-color: $colorWarning !important;
+}
+
+.toast-message {
+  white-space: pre-line;
+  margin-right: 10px;
+}
+
+#toast-container>div {
+  box-shadow: 0 0 4px $colorHover !important;
+}
+
+#toast-container> :hover {
+  box-shadow: 0 0 4px $colorHover !important;
+}
+
+.mat-dialog-container {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.mat-menu-content {
+  padding: 0 !important;
+}
+
+td-data-table {
+  .td-data-table-column-row {
+    background-color: $color3;
+    height: $heightHeader !important;
+    span {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      position: relative;
+      padding: 0;
+      vertical-align: middle;
+      text-align: left;
+    }
+  }
+  .td-data-table-scrollable {
+    overflow-x: auto !important;
+    height: calc(100% - 44px) !important;
+  }
+  tr {
+    outline: none !important;
+  }
+  &.custom-table {
+    max-height: none !important;
+    overflow: unset !important;
+  }
+  &.custom-table .td-data-table-scrollable {
+    height: unset !important;
+    overflow: unset !important;
+  }
+  .td-data-table-cell-content-wrapper,
+  .td-data-table-heading {
+    padding: 0 14px !important;
+    font-size: 13px;
+  }
+  table.td-data-table {
+    &.mat-clickable tbody>tr.td-data-table-row {
+      &:hover {
+        background-color: rgba(0, 0, 0, .06);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.td-paging-bar {
+  height: 44px !important;
+  display: flex !important;
+  justify-content: flex-end;
+  align-items: center;
+  color: $color1;
+  span {
+    font-size: 13px;
+  }
+}
+
+// Mat Tab
+.custom-tab {
+  width: 100%;
+  height: 100%;
+  .mat-tab-list {
+    flex-grow: 0 !important;
+  }
+  .mat-tab-list .mat-ink-bar {
+    background-color: $color4 !important;
+    display: none;
+  }
+  .mat-tab-label {
+    height: 32px !important;
+    min-width: 150px;
+    background-color: $color3;
+    opacity: 1 !important; // border: 0.5px solid $colorBorder;
+  }
+  &:not(.ver-tab) {
+    .mat-tab-labels {
+      // padding: 0.5px;
+      border-left: 0.5px solid $colorBorder;
+    }
+    .mat-tab-label {
+      border-right: 0.5px solid $colorBorder;
+      border-bottom: 0.5px solid $colorBorder;
+      border-top: 0.5px solid $colorBorder;
+    }
+  }
+  &.ver-tab .mat-tab-label {
+    border-top: 0.5px solid $colorBorder;
+    border-right: 0.5px solid $colorBorder;
+    border-left: 0.5px solid $colorBorder;
+    &:last-child {
+      border-bottom: 0.5px solid $colorBorder;
+    }
+  }
+  .mat-tab-label-active {
+    background-color: $colorSelected !important;
+    color: $colorW !important;
+  }
+  &.mat-tab-group {
+    height: 100%;
+  }
+  &.mat-tab-group .mat-tab-body-wrapper {
+    height: 100%;
+  }
+  .mat-tab-header {
+    border-bottom: none !important; // border-color: $color2;
+  }
+  &.mat-tab-group .mat-tab-body-wrapper .mat-tab-body-content {}
+}
+
+.ngx-datepicker-calendar-container {
+  z-index: 100;
+}
+
+.ngx-datepicker-input {
+  padding-right: 0px !important;
+  width: 100% !important;
+}
+
+table.td-data-table {
+  tbody>tr.td-data-table-row {
+    border-bottom: none;
+    border-top: none;
+    &.clickable {
+      &:hover {
+        background-color: rgba(96, 162, 206, 0.2);
+        cursor: pointer;
+      }
+    }
+  }
+  .td-data-table-column-row {
+    background-color: $tableHeadColor;
+    height: $heightHeader !important;
+    color: $colorW;
+    border: none;
+    span {
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      position: relative;
+      padding: 0;
+      vertical-align: middle;
+      text-align: left;
+    }
+  }
+  tr {
+    outline: none !important;
+  }
+  .td-data-table-cell-content-wrapper,
+  .td-data-table-heading {
+    padding: 0 14px !important;
+    font-size: 13px;
+  }
+}
+
+.slider-handle {
+  border-radius: 10px !important;
+  outline: none;
+  border: 2px solid rgb(75, 172, 198) !important;
+}
+
+.mat-checkbox-ripple,
+.mat-radio-ripple {
+  display: none;
+}
+
+.mat-select-panel {
+  max-height: 390px !important;
+}
+
+.mat-select-content-custom {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.search-input-custom::ng-deep {
+  width: 90% !important;
+  .mat-form-field-infix {
+    display: flex !important;
+  }
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: $colorButton !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $colorButton !important
+}
+
+.mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

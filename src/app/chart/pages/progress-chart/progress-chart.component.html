@@ -1,0 +1,15 @@
+<div fxLayout="column" class="align-center">
+  <b [ngStyle]="{'color': config.title.color, 'font-size': config.title.fontSize + 'px'}" class="m-b-10">{{config.title.label}}</b>
+  <div id="{{id}}" class="min-h" class="container" [ngStyle]="{ 'width': config.width, 'height': config.height}"></div>
+</div>
+<div id="{{id}}Legend" class="legend" *ngIf="config.legend.show" fxLayout="row">
+  <div fxLayout="row">
+    <span [ngStyle]="{'background': this.config.progressColor}" class="icon"></span>
+    <span>{{data[0].label}}</span>
+  </div>
+  <div fxLayout="row">
+    <span [ngStyle]="{'background': this.config.unprogressColor}" class="icon"></span>
+    <span>{{data[1].label}}</span>
+  </div>
+</div>
+<div id="{{id}}Tooltip" class="tooltip-chart" hidden></div>

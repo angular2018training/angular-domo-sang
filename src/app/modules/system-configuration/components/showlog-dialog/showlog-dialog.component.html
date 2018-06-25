@@ -1,0 +1,28 @@
+<div fxFill>
+    <div fxFill fxLayout="column">
+      <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+        <span class="page-title" style="text-transform: inherit;">Show Log</span>
+        <div fxFlex></div>
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+      </div>
+      <div class="p-20" style="min-height: 70px">
+        <div fxLayout="row">
+          <!-- <p fxFlex="20" class="question-point">?</p> -->
+          <div fxLayout="column" fxFlex="80">
+            <p> Show Log at here ?</p>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <div fxFlex></div>
+        <div class="m-r-10" fxLayoutAlign="start center">
+          <button mat-button [mat-dialog-close]="true" class="common-btn " (click)="publishBuilding()">Yes</button>
+        </div>
+        <div fxLayoutAlign="start center">
+          <button mat-button mat-dialog-close class="common-btn" (click)="closeDialog()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>

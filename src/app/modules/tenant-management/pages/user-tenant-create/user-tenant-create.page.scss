@@ -1,0 +1,34 @@
+@import '~styles/variables';
+@import '~styles/common';
+
+.btn-next{
+    text-align: center;
+    margin-left: 20%;
+}
+.btn-next>button{
+    background-color: #6EA7DB;
+    color: white;
+}
+
+
+.page-content{
+    display: block !important;
+}
+.btn{
+    float: right;
+}
+.btn>button{
+    background-color: #6EA7DB;
+    color: white;
+    margin-top: 30px;
+    margin: 20px 20px 20px 20px;
+    float: left;
+}
+.user-list-body {
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
+.check-exist {
+    color: red;
+}
+

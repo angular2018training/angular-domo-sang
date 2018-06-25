@@ -1,0 +1,62 @@
+<div fxFill>
+  <form [formGroup]="editFloorForm" (ngSubmit)="onFormSubmit()">
+    <div fxFill fxLayout="column">
+      <div class="dialog-header" fxLayout="row" fxLayoutAlign="start center">
+        <span class="page-title" style="text-transform: inherit;">{{'tags.floorManagement.editFloorInformation' | translate}}</span>
+        <div fxFlex></div>
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+      </div>
+      <div class="p-20" style="min-height: 70px">
+        <div fxLayout="row">
+          <div fxFlex class="m-l-20">
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.floorManagement.floorID' | translate}}</label>
+              <input disabled fxFlex="70" required type="text" class="form-control" [value]="editData.id">
+            </div>
+            <div class="form-group common-input " fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.floorManagement.floorName' | translate}}
+                <span style="color: red"> *</span>
+              </label>
+              <div fxFlex="70" fxLayout="column" fxFlexAlign="start center">
+                <input [(ngModel)]="editData.name" formControlName="name" required type="text" class="form-control" [maxlength]="inputMaxName">
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="color-error fs-12">
+                  <div *ngIf="name.errors.required">
+                    {{'tags.message.required.field' | translate}}
+                  </div>
+                </div>
+                <div *ngIf="editData.name.length == 100" class="color-error fs-12">
+                  {{'tags.message.length' | translate}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.floorManagement.floorLevel' | translate}}</label>
+              <input disabled fxFlex="70" required type="text" class="form-control" [value]="editData.floorLevel">
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.floorManagement.buildingName' | translate}}</label>
+              <input disabled fxFlex="70" required type="text" class="form-control" name="" [value]="editData.buildingName">
+            </div>
+            <div class="form-group common-input" fxLayout="row" fxFlexAlign="center center">
+              <label fxFlex="30" for="">{{'tags.floorManagement.clientName' | translate}}</label>
+              <input disabled fxFlex="70" required type="text" class="form-control" name="" [value]="editData.clientName">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <div fxFlex></div>
+        <div fxLayoutAlign="start center">
+          <div class="m-r-10">
+            <button mat-button mat-dialog-close class="common-btn" (click)="closeDialog()">{{'tags.cancel' | translate}}</button>
+          </div>
+          <div>
+            <button mat-button class="common-btn" [disabled]="editFloorForm.invalid">{{'tags.save' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+@import '~styles/variables';
+
+.page-header {
+  // height: 40px;
+  margin-top: 5px;
+  // border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+}
+
+.page-header>.title {
+  font-size: 22px;
+  color: $colorB;
+}

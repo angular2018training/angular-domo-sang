@@ -1,0 +1,34 @@
+<div class="page-content" fxLayout="column">
+    <div class="overflow-a m-t-5 wrap-table" [ngClass]="{'full-h': filteredData?.length != 0}">
+        <table td-data-table>
+            <thead>
+                <tr td-data-table-column-row>
+                    <th td-data-table-column *ngFor="let column of columns" [name]="column.name" [active]="column.name === sortBy" [sortable]="column.sortable" [sortOrder]="sortOrder" (sortChange)="sort($event)" [numeric]="column.numeric" [width]="column.width">
+                        {{column.label | translate}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr td-data-table-row *ngFor="let row of filteredData; let j = index" class="clickable" (click)="viewDetailProject(row)" [ngClass]="{'bg-gray': j%2!==0}">
+                    <td td-data-table-cell *ngFor="let column of columns; let i = index" [numeric]="column.numeric">
+                        {{column.format ? column.format(row[column.name]) : row[column.name]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <td-paging-bar *ngIf="filteredData?.length != 0" #pagingBar [pageSize]="pageSize" [total]="filteredTotal" (change)="page($event)">
+        <span hide-xs>Page : </span>
+        <span hide-xs>{{'tags.rowPerPage' | translate}}:</span>
+        <mat-select [style.width.px]="50" [(ngModel)]="pageSize">
+            <mat-option *ngFor="let size of pageSizes" [value]="size">
+                {{size}}
+            </mat-option>
+        </mat-select>
+        <span>{{pagingBar.range}}</span>
+        <span hide-xs>{{'tags.of' | translate}} {{pagingBar.total}}</span>
+    </td-paging-bar>
+    <div *ngIf="filteredData?.length == 0" fxFlex fxLayoutAlign="center center">
+        <span class="building-title">{{'tags.message.notFound' | translate}}</span>
+    </div>
+</div>

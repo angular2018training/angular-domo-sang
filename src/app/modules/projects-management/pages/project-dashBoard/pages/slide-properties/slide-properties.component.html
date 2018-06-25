@@ -1,0 +1,65 @@
+<div class="border box-shadow-t">
+    <div class="title">
+        <label>{{'tags.slideProperties' | translate}}</label>
+    </div>
+
+    <div class="cmt">
+        <label>{{'tags.slideProperties.slideType' | translate}}</label>
+    </div>
+
+    <div class="sub-cmt">
+        <select [(ngModel)]="slideStyle" (change)="changeSlideType()">
+            <option *ngFor="let slideType of slideTypes" [value]="slideType.value">{{slideType.label}}</option>
+        </select>
+    </div>
+
+    <div class="cmt">
+        <label>{{'tags.slideProperties.format' | translate}}:</label>
+    </div>
+
+    <div class="sub-cmt ">
+        <label>{{'tags.slideProperties.orientation' | translate}}:</label>
+    </div>
+    <div class="sub">
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-hand-up"></span> Up
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-hand-left"></span> Left
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-hand-down"></span> Down
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-hand-right"></span> Right
+    </button>
+    </div>
+    <div class="sub-cmt">
+        <label>{{'tags.slideProperties.font' | translate}}</label>
+        <select>
+      <option>Arial</option>
+      <option>Time New Roman</option>
+    </select>
+    </div>
+
+    <div class="sub-cmt">
+        <label>{{'tags.slideProperties.text' | translate}}:</label>
+    </div>
+    <div class="sub">
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-bold"></span>
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-italic"></span>
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-align-left"></span>
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-align-center"></span>
+    </button>
+        <button type="button" class="btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-align-right"></span>
+    </button>
+    </div>
+</div>

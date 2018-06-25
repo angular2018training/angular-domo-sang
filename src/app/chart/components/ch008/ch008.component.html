@@ -1,0 +1,12 @@
+<div *ngIf="data">
+    <h1>Average utilization rate distribute by optimal type </h1>
+    <div>
+    <stacked-bar style="float: left;" [id]="stackedBar.chartId" [data]="stackedBar.data" [config]="stackedBar.config"> </stacked-bar>
+    <div *ngIf="showDescription" style="float: left; width:300px; text-align:justify">
+      This Chart compares the percentages of Average Utilization type contributes to total pax by meeting room type
+    </div>
+    </div>
+</div>
+<div *ngIf="!data">
+    <h1>No result found</h1>
+</div>
